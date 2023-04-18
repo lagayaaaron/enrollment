@@ -1,13 +1,17 @@
 class User < ApplicationRecord
+  rolify 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  rolify 
+  has_one :student, dependent: :destroy
+  has_one :instructor, dependent: :destroy
+  accepts_nested_attributes_for :student
+  accepts_nested_attributes_for :instructor
+
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_one :profile, as: :profileable
-  after_create :create_default_profile
+  # after_create :create_default_profile
   # after_create :assign_default_role
 
 

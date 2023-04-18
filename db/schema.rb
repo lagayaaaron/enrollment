@@ -10,24 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_18_025337) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_18_184831) do
   create_table "administrators", force: :cascade do |t|
     t.integer "user_id"
-    t.string "profile_type", null: false
-    t.integer "profile_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["profile_type", "profile_id"], name: "index_administrators_on_profile"
     t.index ["user_id"], name: "index_administrators_on_user_id"
   end
 
   create_table "instructors", force: :cascade do |t|
     t.integer "user_id"
-    t.string "profile_type", null: false
-    t.integer "profile_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["profile_type", "profile_id"], name: "index_instructors_on_profile"
     t.index ["user_id"], name: "index_instructors_on_user_id"
   end
 
@@ -58,11 +52,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_18_025337) do
 
   create_table "students", force: :cascade do |t|
     t.integer "user_id"
-    t.string "profile_type", null: false
-    t.integer "profile_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["profile_type", "profile_id"], name: "index_students_on_profile"
     t.index ["user_id"], name: "index_students_on_user_id"
   end
 
