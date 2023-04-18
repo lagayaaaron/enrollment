@@ -8,7 +8,7 @@ class User < ApplicationRecord
 
   has_one :profile, as: :profileable
   after_create :create_default_profile
-  after_create :assign_default_role
+  # after_create :assign_default_role
 
 
   def create_default_profile
@@ -30,4 +30,5 @@ class User < ApplicationRecord
   def is_administrator?
     has_role?(:administrator)
   end
+
 end

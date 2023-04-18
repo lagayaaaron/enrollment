@@ -1,0 +1,20 @@
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="container">
+    <%= link_to "Enrollment System", root_path, class: "navbar-brand" %>
+
+        <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="navbar-nav mr-auto mt-2 mt-md-0">Sample</ul>
+
+        <ul class="navbar-nav">
+            <% if user_signed_in? %>
+            <li class="nav-item">
+                <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "nav-link active" %>
+            </li>
+            <% else %>
+                <li class="nav-item"><%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %></li>
+                <li class="nav-item"><%= link_to "Login", new_user_session_path, class: "nav-link" %></li>
+            <% end %>
+        </ul>
+        </div>
+    </div>
+</nav>

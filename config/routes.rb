@@ -1,7 +1,27 @@
 Rails.application.routes.draw do
-  devise_for :users
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Defines the root path route ("/")
-  # root "articles#index"
-end
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    passwords: 'users/passwords'
+  }
+
+  authenticate :user do
+    root to: 'dashboard#index'
+
+    namespace :admin do
+      get 'dashboard' => 'dashboard#index'
+      # root to: 'dashboard#index'
+    end
+
+    namespace :instructor do
+      get 'dashboard' => 'dashboard#index'
+      # root to: 'dashboard#index'
+    end
+
+    namespace :student do
+      get 'dashboard' => 'dashboard#index'
+      # root to: 'dashboard#index'
+    end
+  end #End of Authenticate :user do
+
+end #end of rails
