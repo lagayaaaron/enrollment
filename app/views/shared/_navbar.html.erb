@@ -7,6 +7,9 @@
 
         <ul class="navbar-nav">
             <% if user_signed_in? %>
+                <% if current_user.is_student?%>
+                    <li class="nav-item"><%= link_to "View Profile", student_profiles_path(@profile), class: "nav-link" %></li>
+                <% end %>
             <li class="nav-item">
                 <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "nav-link active" %>
             </li>

@@ -20,6 +20,8 @@ Rails.application.routes.draw do
 
     namespace :student do
       get 'dashboard' => 'dashboard#index'
+      resource :profiles, only: [:show, :edit, :update]
+      
       # root to: 'dashboard#index'
     end
   end #End of Authenticate :user do
