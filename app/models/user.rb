@@ -11,17 +11,50 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  after_create :create_student_and_profile
+  # after_create :create_instructor_and_profile
+
   # after_create :create_default_profile
   # after_create :assign_default_role
+  def create_instructor_and_profile
+    # Add the 'student' role to the user
+    add_role(:instructor)
 
+    # Create a new Student record associated with the user
+    instructor = create_instructor
 
-  def create_default_profile
-    create_profile(name: "Default Name", gender: "Unknown", email: self.email, birthdate: Date.today, contact_number: "", address: "")
+    # Create a new Profile record associated with the student
+    instructor.create_profile(
+      name: 'Default Ins Name',
+      gender: 'Male',
+      birthdate: Date.new(2000, 1, 1),
+      contact_number: '1234567890',
+      address: 'your address',
+      email: self.email
+    )
   end
 
-  def assign_default_role
-    self.add_role(:student) if self.roles.blank?
+  def create_student_and_profile
+    # Add the 'student' role to the user
+    add_role(:student)
+
+    # Create a new Student record associated with the user
+    student = create_student
+
+    # Create a new Profile record associated with the student
+    student.create_profile(
+      name: 'Default Name',
+      gender: 'Male',
+      birthdate: Date.new(2000, 1, 1),
+      contact_number: '1234567890',
+      address: 'your address',
+      email: self.email
+    )
   end
+
+
+
+
 
   def is_student?
     has_role?(:student)

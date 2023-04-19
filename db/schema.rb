@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_18_184831) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_19_031220) do
   create_table "administrators", force: :cascade do |t|
     t.integer "user_id"
     t.datetime "created_at", null: false
@@ -36,7 +36,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_18_184831) do
     t.integer "profileable_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["profileable_id", "profileable_type"], name: "index_profiles_on_profileable_id_and_profileable_type", unique: true
     t.index ["profileable_type", "profileable_id"], name: "index_profiles_on_profileable"
+  end
+
+  create_table "programs", force: :cascade do |t|
+    t.string "code"
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "roles", force: :cascade do |t|
@@ -54,7 +63,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_18_184831) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "program_id"
+    t.index ["program_id"], name: "index_students_on_program_id"
     t.index ["user_id"], name: "index_students_on_user_id"
+  end
+
+  create_table "subjects", force: :cascade do |t|
+    t.string "code"
+    t.string "name"
+    t.integer "program_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["program_id"], name: "index_subjects_on_program_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -79,5 +99,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_18_184831) do
 
   add_foreign_key "administrators", "users"
   add_foreign_key "instructors", "users"
+  add_foreign_key "students", "programs"
   add_foreign_key "students", "users"
+  add_foreign_key "subjects", "programs"
 end
