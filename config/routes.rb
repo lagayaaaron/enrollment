@@ -7,9 +7,11 @@ Rails.application.routes.draw do
 
   authenticate :user do
     root to: 'dashboard#index'
+  
 
     namespace :admin do
       get 'dashboard' => 'dashboard#index'
+      resource :profile, only: [:show, :edit, :update]
       # root to: 'dashboard#index'
     end
 

@@ -4,6 +4,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   has_one :student, dependent: :destroy
   has_one :instructor, dependent: :destroy
+  has_one :administrator, dependent: :destroy
+  accepts_nested_attributes_for :administrator
   accepts_nested_attributes_for :student
   accepts_nested_attributes_for :instructor
 
@@ -12,38 +14,16 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   after_create :create_student_and_profile
-  # after_create :create_instructor_and_profile
-
-  # after_create :create_default_profile
-  # after_create :assign_default_role
-  def create_instructor_and_profile
-    # Add the 'student' role to the user
-    add_role(:instructor)
-
-    # Create a new Student record associated with the user
-    instructor = create_instructor
-
-    # Create a new Profile record associated with the student
-    instructor.create_profile(
-      name: 'Default Ins Name',
-      gender: 'Male',
-      birthdate: Date.new(2000, 1, 1),
-      contact_number: '1234567890',
-      address: 'your address',
-      email: self.email
-    )
-  end
 
   def create_student_and_profile
     # Add the 'student' role to the user
-    add_role(:student)
+    add_role(:administrator)
 
     # Create a new Student record associated with the user
-    student = create_student
-
+    admin = create_administrator
     # Create a new Profile record associated with the student
-    student.create_profile(
-      name: 'Default Name',
+    admin.create_profile(
+      name: 'Default Admin Name',
       gender: 'Male',
       birthdate: Date.new(2000, 1, 1),
       contact_number: '1234567890',

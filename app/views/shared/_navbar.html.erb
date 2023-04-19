@@ -13,6 +13,9 @@
                 <% if current_user.is_instructor?%>
                     <li class="nav-item"><%= link_to "View Profile", instructor_profile_path, class: "nav-link" %></li>
                 <% end %>
+                <% if current_user.is_administrator?%>
+                    <li class="nav-item"><%= link_to "View Profile", admin_profile_path, class: "nav-link" %></li>
+                <% end %>
             <li class="nav-item">
                 <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "nav-link active" %>
             </li>

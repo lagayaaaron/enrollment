@@ -1,0 +1,22 @@
+<h1>Edit Profile</h1>
+
+<%= form_for [:admin, @profile] do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control" %>
+
+    <%= f.label :gender %>
+    <%= f.select :gender, ['Male', 'Female', 'Other'], class: "form-control"%>
+
+    <%= f.label :birthdate %>
+    <%= f.date_field :birthdate, class: "form-control" %>
+
+    <%= f.label :contact_number %>
+    <%= f.text_field :contact_number, class: "form-control" %>
+
+    <%= f.label :address %>
+    <%= f.text_area :address, class: "form-control" %>
+
+    <%= f.submit "Save Changes", class: "btn btn-primary" %>
+<% end %>
+
+<%= link_to "Cancel", admin_profile_path, class: "btn btn-secondary" %>
