@@ -15,12 +15,13 @@ Rails.application.routes.draw do
 
     namespace :instructor do
       get 'dashboard' => 'dashboard#index'
+      resource :profile, only: [:show, :edit, :update]
       # root to: 'dashboard#index'
     end
 
     namespace :student do
       get 'dashboard' => 'dashboard#index'
-      resource :profiles, only: [:show, :edit, :update]
+      resource :profile, only: [:show, :edit, :update]
       
       # root to: 'dashboard#index'
     end

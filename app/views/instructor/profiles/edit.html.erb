@@ -1,6 +1,6 @@
 <h1>Edit Profile</h1>
 
-<%= form_for [:student, @profile] do |f| %>
+<%= form_for [:instructor, @profile] do |f| %>
     <%= f.label :name %>
     <%= f.text_field :name, class: "form-control" %>
 
@@ -19,4 +19,4 @@
     <%= f.submit "Save Changes", class: "btn btn-primary" %>
 <% end %>
 
-<%= link_to "Cancel", student_profile_path, class: "btn btn-secondary" %>
+<%= link_to "Cancel", instructor_profile_path, class: "btn btn-secondary" %>
