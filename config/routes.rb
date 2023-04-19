@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     namespace :admin do
       get 'dashboard' => 'dashboard#index'
       resource :profile, only: [:show, :edit, :update]
+      resources :students
       # root to: 'dashboard#index'
     end
 

@@ -1,0 +1,26 @@
+<h1>All Students</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Gender</th>
+      <th>Birthdate</th>
+      <th>Contact Number</th>
+      <th>Address</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @students.each do |student| %>
+      <tr>
+        <td><%= student.profile.name %></td>
+        <td><%= student.profile.gender %></td>
+        <td><%= student.profile.birthdate %></td>
+        <td><%= student.profile.contact_number %></td>
+        <td><%= student.profile.address %></td>
+        <td><%= link_to 'Edit', edit_admin_student_path(student) %> | <%= link_to 'Delete', admin_student_path(student), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

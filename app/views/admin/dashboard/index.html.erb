@@ -1,1 +1,27 @@
-<h1>Welcome to the admin dashboard, <%= current_user.email %></h1>
+<h4>Welcome to the admin dashboard, <%= current_user.email %></h4>
+
+
+<div class="col-lg-6">
+    <div class="card shadow mt-5">
+        <div class="card-body">
+            <p class="lead"><%= @students%> Students</p>
+            <p><%= link_to "New Student", new_admin_student_path, class: "btn btn-primary" %></p>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-3">
+    <div class="card shadow mt-5">
+        <div class="card-body">
+            <p class="lead"><%= @instructor%> Instructors</p>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-3">
+    <div class="card shadow mt-5">
+        <div class="card-body">
+            <p class="lead"><%= @courses%>Courses</p>
+        </div>
+    </div>
+</div>

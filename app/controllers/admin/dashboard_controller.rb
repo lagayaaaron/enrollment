@@ -3,6 +3,9 @@ class Admin::DashboardController < DashboardController
     before_action :authorize_admin
 
     def index
+        @students = Student.count
+        @instructors = Instructor.count
+        @courses = Program.count
     end
 
 
