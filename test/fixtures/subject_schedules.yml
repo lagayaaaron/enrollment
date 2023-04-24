@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  subject: one
+  instructor: one
+  start_time: 2023-04-24 09:11:00
+  end_time: 2023-04-24 09:11:00
+  day_of_week: MyString
+  location: MyString
+
+two:
+  subject: two
+  instructor: two
+  start_time: 2023-04-24 09:11:00
+  end_time: 2023-04-24 09:11:00
+  day_of_week: MyString
+  location: MyString

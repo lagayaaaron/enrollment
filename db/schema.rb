@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_19_031220) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_24_011100) do
   create_table "administrators", force: :cascade do |t|
     t.integer "user_id"
     t.datetime "created_at", null: false
@@ -68,6 +68,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_19_031220) do
     t.index ["user_id"], name: "index_students_on_user_id"
   end
 
+  create_table "subject_schedules", force: :cascade do |t|
+    t.integer "subject_id", null: false
+    t.integer "instructor_id", null: false
+    t.time "start_time"
+    t.time "end_time"
+    t.string "day_of_week"
+    t.string "location"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["instructor_id"], name: "index_subject_schedules_on_instructor_id"
+    t.index ["subject_id"], name: "index_subject_schedules_on_subject_id"
+  end
+
   create_table "subjects", force: :cascade do |t|
     t.string "code"
     t.string "name"
@@ -101,5 +114,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_19_031220) do
   add_foreign_key "instructors", "users"
   add_foreign_key "students", "programs"
   add_foreign_key "students", "users"
+  add_foreign_key "subject_schedules", "instructors"
+  add_foreign_key "subject_schedules", "subjects"
   add_foreign_key "subjects", "programs"
 end
