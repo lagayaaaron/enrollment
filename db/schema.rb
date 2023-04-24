@@ -10,12 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_24_011100) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_24_024743) do
   create_table "administrators", force: :cascade do |t|
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_administrators_on_user_id"
+  end
+
+  create_table "admissions", force: :cascade do |t|
+    t.integer "student_id", null: false
+    t.integer "subject_schedule_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_admissions_on_student_id"
+    t.index ["subject_schedule_id"], name: "index_admissions_on_subject_schedule_id"
   end
 
   create_table "instructors", force: :cascade do |t|
@@ -111,6 +120,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_24_011100) do
   end
 
   add_foreign_key "administrators", "users"
+  add_foreign_key "admissions", "students"
+  add_foreign_key "admissions", "subject_schedules"
   add_foreign_key "instructors", "users"
   add_foreign_key "students", "programs"
   add_foreign_key "students", "users"
