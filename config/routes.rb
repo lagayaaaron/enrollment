@@ -6,13 +6,18 @@ Rails.application.routes.draw do
   }
 
   authenticate :user do
-    root to: 'dashboard#index'
+    root to: 'home#index'
   
 
     namespace :admin do
       get 'dashboard' => 'dashboard#index'
-      resource :profile, only: [:show, :edit, :update]
-      resources :students
+      resource :profile
+      resources :students do
+        resources :profiles
+        collection do
+          get 'search'
+        end
+      end
       # root to: 'dashboard#index'
     end
 

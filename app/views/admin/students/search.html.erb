@@ -1,4 +1,5 @@
 <h1>All Students</h1>
+
 <%= form_tag search_admin_students_path, method: :get do %>
   <div class="row">
     <div class="col-md-4">
@@ -24,6 +25,7 @@
     </div>
   </div>
 <% end %>
+
 <table>
   <thead>
     <tr>
@@ -31,7 +33,7 @@
       <th>Gender</th>
       <th>Birthdate</th>
       <th>Contact Number</th>
-      <th>Address</th>
+      <th>Email</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -42,10 +44,11 @@
         <td><%= student.profile.gender %></td>
         <td><%= student.profile.birthdate %></td>
         <td><%= student.profile.contact_number %></td>
-        <td><%= student.profile.address %></td>
-        <td><%= student.id%></td>
-        <td><%= link_to 'Edit', edit_admin_student_path(student) %> | 
-        <%= link_to "Destroy", admin_students_path, data: { "turbo-method": :delete }, class:"btn btn-outline-danger btn-sm" %></td>
+        <td><%= student.profile.email %></td>
+        <td>
+          <%= link_to 'Edit', edit_admin_student_path(student) %> |
+          <%= link_to 'Destroy', admin_student_path(student), method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
       </tr>
     <% end %>
   </tbody>

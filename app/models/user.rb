@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_one :student, dependent: :destroy
   has_one :instructor, dependent: :destroy
   has_one :administrator, dependent: :destroy
+
   accepts_nested_attributes_for :administrator
   accepts_nested_attributes_for :student
   accepts_nested_attributes_for :instructor
@@ -12,8 +13,8 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-
-  after_create :create_student_and_profile
+  validates :email, uniqueness: true
+  # after_create :create_student_and_profile
 
   def create_student_and_profile
     # Add the 'student' role to the user

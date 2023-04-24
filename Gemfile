@@ -76,3 +76,8 @@ end
 
 gem 'devise'
 gem 'rolify'
+gem 'faker'
+gem "sunspot_rails" 
+gem 'sunspot_solr' ,"~> 2.1.0"
+gem "progress_bar"
+gem 'will_paginate'

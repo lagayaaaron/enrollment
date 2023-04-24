@@ -1,6 +1,6 @@
 <h1>Edit Student Profile</h1>
 
-<%= form_for [:admin, @student, @student_profile], url: admin_student_path(@student, @student_profile), method: :patch do |f| %>
+<%= form_for [:admin, @student, @student_profile], url: admin_student_path(@student, @student_profile), method: :put do |f| %>
 <%= render 'shared/error_messages', object: f.object %>
 
   <div class="field">
@@ -31,4 +31,7 @@
   <div class="actions">
     <%= f.submit "Update Profile", class: "btn btn-primary" %>
   </div>
+  <%= link_to 'Delete Profile', admin_students_path, method: :delete, data: { confirm: 'Are you sure you want to delete this profile?' }, class: 'btn btn-danger' %>
+
 <% end %>
+
