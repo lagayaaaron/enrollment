@@ -1,5 +1,5 @@
-class Program < ApplicationRecord
-    # has_many :students
+class Course < ApplicationRecord
+    has_many :subjects
     # has_many :courses
   
     validates :code, presence: true, uniqueness: true

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_25_034052) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_25_065102) do
   create_table "administrators", force: :cascade do |t|
     t.integer "user_id"
     t.datetime "created_at", null: false
@@ -25,6 +25,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_25_034052) do
     t.datetime "updated_at", null: false
     t.index ["student_id"], name: "index_admissions_on_student_id"
     t.index ["subject_schedule_id"], name: "index_admissions_on_subject_schedule_id"
+  end
+
+  create_table "courses", force: :cascade do |t|
+    t.string "code"
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "instructors", force: :cascade do |t|
@@ -49,14 +57,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_25_034052) do
     t.index ["profileable_type", "profileable_id"], name: "index_profiles_on_profileable"
   end
 
-  create_table "programs", force: :cascade do |t|
-    t.string "code"
-    t.string "name"
-    t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.string "resource_type"
@@ -73,6 +73,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_25_034052) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "program_id"
+    t.integer "course_id"
+    t.index ["course_id"], name: "index_students_on_course_id"
     t.index ["program_id"], name: "index_students_on_program_id"
     t.index ["user_id"], name: "index_students_on_user_id"
   end
@@ -96,6 +98,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_25_034052) do
     t.integer "program_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "course_id"
+    t.index ["course_id"], name: "index_subjects_on_course_id"
     t.index ["program_id"], name: "index_subjects_on_program_id"
   end
 
@@ -122,8 +126,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_25_034052) do
 
   add_foreign_key "admissions", "students"
   add_foreign_key "admissions", "subject_schedules"
-  add_foreign_key "students", "programs"
+  add_foreign_key "students", "courses"
   add_foreign_key "subject_schedules", "instructors"
   add_foreign_key "subject_schedules", "subjects"
-  add_foreign_key "subjects", "programs"
+  add_foreign_key "subjects", "courses"
+  add_foreign_key "subjects", "courses", column: "program_id"
 end

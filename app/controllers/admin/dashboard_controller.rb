@@ -5,7 +5,7 @@ class Admin::DashboardController < DashboardController
     def index
         @students = Student.count
         @instructors = Instructor.count
-        @courses = Program.count
+        @courses = Course.count
     end
 
 

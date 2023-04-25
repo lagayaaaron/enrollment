@@ -1,6 +1,7 @@
 class Student < User
   has_one :profile, as: :profileable, dependent: :destroy
-  
+  belongs_to :course
+
   has_many :admissions
   has_many :subject_schedules, through: :admissions
   accepts_nested_attributes_for :profile
