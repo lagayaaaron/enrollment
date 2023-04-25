@@ -1,4 +1,4 @@
-class Student < ApplicationRecord
+class Student < User
   has_one :profile, as: :profileable, dependent: :destroy
   
   belongs_to :program
