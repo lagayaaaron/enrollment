@@ -1,6 +1,6 @@
 class Student < ApplicationRecord
   has_one :profile, as: :profileable, dependent: :destroy
-  belongs_to :user, dependent: :destroy
+  
   belongs_to :program
   has_many :admissions
   has_many :subject_schedules, through: :admissions
