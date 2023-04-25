@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   rolify
+  
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
 
@@ -7,7 +8,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   validates :email, uniqueness: true
-  # after_create :create_student_and_profile
+
+
+  #STI Attribute
+  self.inheritance_column = :type
 
 
   def is_student?
