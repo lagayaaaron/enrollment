@@ -1,6 +1,7 @@
 class SubjectSchedule < ApplicationRecord
   belongs_to :subject
   belongs_to :instructor
+  
   has_many :admissions
   has_many :students, through: :admissions
   validates :start_time, :end_time, :day_of_week, :location, presence: true

@@ -20,23 +20,23 @@ class Admin::StudentsController < ApplicationController
         end 
         # search end
         @students = @search.results
-        raise @students.inspect
+        # raise @students.inspect
         render 'search'
     end
+
     def new
-        @user = User.new
-        @student = @user.build_student
+        @student = Student.new
+        @courses = Course.all
     end
 
     def create
-        @user = User.new(user_params)
-        @user.add_role(:student)
+        @student = Student.new(user_params)
+        @courses = Course.all
 
-        if @user.save
-            @student = @user.student
-            @profile = @student.build_profile(profile_params)
+        if @student.save
+            @student_profile = @student.create_profile(profile_params)
             flash[:success] = "Student created successfully"
-            redirect_to admin_students_path(@student)
+            redirect_to admin_students_path
         else
             render :new
         end
@@ -61,7 +61,7 @@ class Admin::StudentsController < ApplicationController
     end
 
     def destroy
-        raise "qwe"
+
         @student.destroy!
         flash[:success] = "Student deleted successfully"
         redirect_to admin_dashboard_path
@@ -75,11 +75,11 @@ class Admin::StudentsController < ApplicationController
     end
 
     def user_params
-        params.require(:user).permit(:email, :password, :password_confirmation)
+        params.require(:student).permit(:email, :password, :password_confirmation, :course_id)
     end
 
     def profile_params
-        params.require(:profile).permit(:name, :gender, :birthdate, :contact_number, :address)
+        params.require(:student).require(:student_profile).permit(:name, :gender, :birthdate, :contact_number, :address)
     end
 
 end

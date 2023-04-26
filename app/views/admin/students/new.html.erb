@@ -1,6 +1,6 @@
 <h1>New Student</h1>
 
-<%= form_with(model: [@user, @student], local: true) do |f| %>
+<%= form_with model: @student, url: admin_students_path, method: :post do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
   <%= f.label :email %>
@@ -12,7 +12,7 @@
   <%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation, class: 'form-control' %>
 
-  <%= f.fields_for :student do |s| %>
+  <%= f.fields_for :student_profile do |s| %>
     <%= s.label :name %>
     <%= s.text_field :name, class: 'form-control' %>
 
@@ -28,6 +28,9 @@
     <%= s.label :address %>
     <%= s.text_field :address, class: 'form-control' %>
   <% end %>
+    <%# Add a collection of courses for the student %>
+  <%= f.label :course_id %>
+  <%= f.collection_select :course_id, @courses, :id, :name, class: "form-control" %>
 
   <p><%= f.submit "Create Student", class: "btn btn-primary mt-3" %></p>
 <% end %>
