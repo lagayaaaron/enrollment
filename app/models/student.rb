@@ -16,6 +16,7 @@ class Student < User
 
   searchable do
     integer :id
+    text :email
     # # join(:name, :prefix => "workshop", :target => Workshop, :type => :text, :join => { :from => :id, :to => :workshop_id })
     # join(:name, prefix: "profile", target: Profile, type: :text, join: { from: :id, to: :id})
     # join(:email, prefix: "profile", target: Profile, type: :text, join: { from: :id, to: :id})

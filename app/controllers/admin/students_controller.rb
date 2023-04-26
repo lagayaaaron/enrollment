@@ -2,8 +2,14 @@ class Admin::StudentsController < ApplicationController
     before_action :set_student, only: %i[show edit update destroy]
     
     def index
-        @students = Student.all
-        
+        if params[:query]
+            @search = Student.search do
+                fulltext params[:query]
+            end
+            @students = @search.results
+        else
+            @students = Student.all
+        end        
     end
     def search
         @search = Profile.search do
