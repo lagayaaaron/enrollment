@@ -6,15 +6,21 @@ class Admin::StudentsController < ApplicationController
         
     end
     def search
-        @search = Student.search do
+        @search = Profile.search do
+            # fulltext params[:name] do
+            #     fields(:student_name)
+            # end
+            #with(:name).starting_with(params[:name]) if params[:name].present?
             any do
-                fulltext(params[:query], :fields => [:student_name])
+                fulltext(params[:name], :fields => [:name])
+                fulltext(params[:email], :fields => [:email])
             end
             order_by :id, :asc
             paginate :page => params[:page], :per_page => 6
         end 
         # search end
         @students = @search.results
+        raise @students.inspect
         render 'search'
     end
     def new
