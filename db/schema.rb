@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_25_093024) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_26_012651) do
   create_table "administrators", force: :cascade do |t|
     t.integer "user_id"
     t.datetime "created_at", null: false
@@ -97,6 +97,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_25_093024) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "course_id"
+    t.string "ancestry"
+    t.index ["ancestry"], name: "index_subjects_on_ancestry"
     t.index ["course_id"], name: "index_subjects_on_course_id"
     t.index ["program_id"], name: "index_subjects_on_program_id"
   end
