@@ -41,7 +41,7 @@ class Admin::StudentsController < ApplicationController
 
         if @student.save
             @student_profile = @student.create_profile(profile_params)
-            flash[:success] = "Student created successfully"
+            flash[:notice] = "Student created successfully"
             redirect_to admin_students_path
         else
             render :new
@@ -49,14 +49,17 @@ class Admin::StudentsController < ApplicationController
     end
 
     def edit
-        @student_profile = @student.profile
+        if @student.profile.nil?
+            flash[:notice] = "Student profile not found."
+            redirect_to admin_students_path
+        else
+            @courses = Course.all
+        end
     end
 
-    def update
-        @student_profile = @student.profile
-        
+    def update        
         if @student_profile.update(profile_params)
-            flash[:success] = "Profile updated successfully"
+            flash[:notice] = "Profile updated successfully"
             redirect_to admin_students_path
         else
             render :edit
@@ -67,10 +70,13 @@ class Admin::StudentsController < ApplicationController
     end
 
     def destroy
-
-        @student.destroy!
-        flash[:success] = "Student deleted successfully"
-        redirect_to admin_dashboard_path
+        if @student.destroy
+            flash[:notice] = "Student deleted successfully"
+            redirect_to admin_dashboard_path
+        else
+            flash[:notice] = "Error"
+            redirect_to admin_dashboard_path
+        end
     end
 
     private

@@ -1,7 +1,6 @@
 class Student < User
   belongs_to :course
 
-  has_one :profile, as: :profileable, dependent: :destroy
 
   has_many :admissions
   has_many :subject_schedules, through: :admissions
