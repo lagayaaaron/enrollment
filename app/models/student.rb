@@ -1,6 +1,4 @@
 class Student < User
-  belongs_to :course
-
 
   has_many :admissions
   has_many :subject_schedules, through: :admissions
@@ -11,6 +9,10 @@ class Student < User
 
   def assign_role
     add_role :student
+  end
+  
+  def is_student?
+    has_role?(:student)
   end
 
   searchable do

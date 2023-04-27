@@ -4,6 +4,9 @@ class Instructor < User
 
   after_create :assign_role 
 
+  def is_instructor?
+    has_role?(:instructor)
+  end
 
   def assign_role
     add_role :instructor
