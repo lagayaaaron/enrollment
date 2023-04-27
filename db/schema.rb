@@ -111,7 +111,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_27_063621) do
     t.datetime "updated_at", null: false
     t.string "type"
     t.integer "course_id"
-    t.integer "year_sem", limit: 2
+    t.integer "year", default: 1
+    t.integer "sem", default: 1
     t.index ["course_id"], name: "index_users_on_course_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

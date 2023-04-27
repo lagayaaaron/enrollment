@@ -87,7 +87,7 @@ class Admin::StudentsController < ApplicationController
     end
 
     def user_params
-        params.require(:student).permit(:email, :password, :password_confirmation, :course_id, year_sem: [])
+        params.require(:student).permit(:email, :password, :password_confirmation, :course_id, :year, :sem)
     end
 
     def profile_params
