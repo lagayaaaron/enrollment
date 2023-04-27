@@ -14,15 +14,21 @@
 <table>
   <thead>
     <tr>
-      <th>Email</th>
       <th>ID</th>
+      <th>Email</th>
+      <th>Course</th>
+      <th>Year</th>
+      <th>Sem</th>
     </tr>
   </thead>
   <tbody>
     <% @students.each do |student| %>
       <tr>
-        <td><%= student.email %></td>
         <td><%= student.id%></td>
+        <td><%= student.email %></td>
+        <td><%= student.course.name %></td>
+        <td><%= student.year %></td>
+        <td><%= student.sem %></td>
         <td><%= link_to 'Edit Student Account', edit_admin_student_path(student) %> | 
         <td><%= link_to 'Edit Profile', edit_admin_student_path(student) %> | 
         <%= link_to "Destroy", admin_student_path(student), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-outline-danger btn-sm" %></td>

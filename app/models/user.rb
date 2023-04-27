@@ -8,8 +8,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  enum :year, { first_year: 1, second_year: 2, third_year: 3, fourth_year: 4 }
-  enum :sem, { first_sem: 1, second_sem: 2}
+  enum :year, {first_year: 1, second_year: 2, third_year: 3, fourth_year: 4}
+  enum :sem, {first_sem: 1, second_sem: 2}
   #STI Attribute
   self.inheritance_column = :type
   validates :email, uniqueness: true

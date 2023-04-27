@@ -7,14 +7,14 @@
 
         <ul class="navbar-nav">
             <% if user_signed_in? %>
-                <% if current_user.is_student?%>
+                <% if current_user.has_role? (:student)%>
                     <li class="nav-item"><%= link_to "View Profile", student_profile_path, class: "nav-link" %></li>
                     <li class="nav-item"><%= link_to "View Enrollment", student_profile_path, class: "nav-link" %></li>
                 <% end %>
-                <% if current_user.is_instructor?%>
+                <% if current_user.has_role? (:instructor)%>
                     <li class="nav-item"><%= link_to "View Profile", instructor_profile_path, class: "nav-link" %></li>
                 <% end %>
-                <% if current_user.is_administrator?%>
+                <% if current_user.has_role? (:administrator)%>
                     <li class="nav-item"><%= link_to "View Profile", admin_profile_path, class: "nav-link" %></li>
                     <li class="nav-item"><%= link_to "View Dashboard", admin_dashboard_path, class: "nav-link" %></li>
                 <% end %>

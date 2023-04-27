@@ -32,5 +32,11 @@
   <%= f.label :course_id %>
   <%= f.collection_select :course_id, @courses, :id, :name, class: "form-control" %>
 
+  <%= f.label :year %>
+  <%= f.select :year, User.years.keys, include_blank: true %>
+
+  <%= f.label :sem %>
+  <%= f.select :sem, User.sems.keys, include_blank: true %>
+
   <p><%= f.submit "Create Student", class: "btn btn-primary mt-3" %></p>
 <% end %>

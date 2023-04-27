@@ -8,7 +8,7 @@ class Admin::StudentsController < ApplicationController
             end
             @students = @search.results
         else
-            @students = Student.all
+            @students = Student.includes(:course).all
         end        
     end
     def search
@@ -38,7 +38,7 @@ class Admin::StudentsController < ApplicationController
     def create
         @student = Student.new(user_params)
         @courses = Course.all
-
+        
         if @student.save
             @student_profile = @student.create_profile(profile_params)
             flash[:notice] = "Student created successfully"
