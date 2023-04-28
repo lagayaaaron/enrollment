@@ -6,4 +6,4 @@
 <p><strong>Contact Number:</strong> <%= @profile.contact_number %></p>
 <p><strong>Address:</strong> <%= @profile.address %></p>
 
-<%= link_to "Edit Profile", edit_admin_profile_path %>
+<%= link_to "Edit Profile", edit_admin_profile_path(@profile) %>

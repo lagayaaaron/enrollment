@@ -1,15 +1,13 @@
 class Admin::ProfilesController < ApplicationController
+    before_action :set_profile
 
     def show
-        @profile = current_user.profile
     end
     
     def edit
-        @profile = current_user.profile 
     end
     def update
-        @profile = current_user.profile
-            if @profile.update(profile_params)
+        if @profile.update(profile_params)
             flash[:success] = "Profile updated successfully"
             redirect_to admin_profile_path
         else
@@ -19,6 +17,10 @@ class Admin::ProfilesController < ApplicationController
     
     private
     
+    def set_profile
+        @profile = current_user.profile
+    end
+
     def profile_params
         params.require(:profile).permit(:name, :gender, :birthdate, :contact_number, :address)
     end

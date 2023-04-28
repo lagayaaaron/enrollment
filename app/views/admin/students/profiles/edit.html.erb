@@ -10,7 +10,7 @@
 
     <div class="field">
         <%= f.label :gender %>
-        <%= f.select :gender, options_for_select(['Male', 'Female', 'Other'], @profile.gender) %>
+        <%= f.select :gender, options_for_select(['Male', 'Female', 'Other'], @student.profile.gender) %>
     </div>
 
     <div class="field">

@@ -8,7 +8,7 @@ class Admin::StudentsController < ApplicationController
             end
             @students = @search.results
         else
-            @students = Student.includes(:course).all
+            @students = Student.includes(:course, :profile).all
         end        
     end
     def search
