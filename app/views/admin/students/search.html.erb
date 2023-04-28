@@ -2,27 +2,18 @@
 
 <%= form_tag search_admin_students_path, method: :get do %>
   <div class="row">
-    <div class="col-md-4">
-      <%= text_field_tag :name, params[:name], placeholder: "Name" %>
+    <div class="col-md-2">
+      <%= text_field_tag :email, params[:email], placeholder: "Email", class: "form-control" %>
     </div>
-    <div class="col-md-4">
-      <%= select_tag :gender, options_for_select(["Male", "Female", "Other"], params[:gender]), include_blank: true %>
+    <div class="col-md-2">
+      <%= text_field_tag :course, params[:course], placeholder: "Course", class: "form-control" %>
     </div>
-    <div class="col-md-4">
-      <%= text_field_tag :birthdate, params[:birthdate], placeholder: "Birthdate" %>
+    <div class="col-md-2">
+      <%= text_field_tag :code, params[:code], placeholder: "Course Code", class: "form-control" %>
     </div>
+  <div class="col-md-2">
+    <%= submit_tag "Search", class: "btn btn-primary" %>
   </div>
-  <br>
-  <div class="row">
-    <div class="col-md-4">
-      <%= text_field_tag :contact_number, params[:contact_number], placeholder: "Contact Number" %>
-    </div>
-    <div class="col-md-4">
-      <%= text_field_tag :email, params[:email], placeholder: "Email" %>
-    </div>
-    <div class="col-md-4">
-      <%= submit_tag "Search", class: "btn btn-primary" %>
-    </div>
   </div>
 <% end %>
 
@@ -30,32 +21,35 @@
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Gender</th>
-      <th>Birthdate</th>
-      <th>Contact Number</th>
+      <th>ID</th>
       <th>Email</th>
-      <th>Actions</th>
+      <th>Name</th>
+      <th>Course</th>
+      <th>Course Code</th>
+      <th>Year</th>
+      <th>Sem</th>
     </tr>
   </thead>
   <tbody>
     <% @students.each do |student| %>
       <tr>
-        <td><%= student.name %></td>
-        <td><%= student.gender %></td>
-        <td><%= student.birthdate %></td>
-        <td><%= student.contact_number %></td>
+        <td><%= student.id%></td>
         <td><%= student.email %></td>
-        <td>
-          <%= link_to 'Edit', edit_admin_student_path(student) %> |
-          <%= link_to 'Destroy', admin_student_path(student), method: :delete, data: { confirm: 'Are you sure?' } %>
-        </td>
+        <td><%= student.profile.name if student.profile&.name.present? %></td>
+        <td><%= student.course.name %></td>
+        <td><%= student.course.code %></td>
+        <td><%= student.year %></td>
+        <td><%= student.sem %></td>
+        <td><%= link_to 'Edit Student Account', edit_admin_student_path(student) %> | 
+        <td><%= link_to 'Edit Profile', edit_admin_student_profile_path(student) %> | 
+        <%= link_to "Destroy", admin_student_path(student), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-outline-danger btn-sm" %></td>
       </tr>
     <% end %>
-  </tbody> 
+  </tbody>
 </table>
+
 <% else %>
     <p>No students found.</p>
-
 <%end%>
 
+<%= will_paginate @students %>

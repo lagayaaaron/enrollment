@@ -19,7 +19,11 @@ class User < ApplicationRecord
   validates :year, :sem, presence: true, if: -> { is_student? && course_id.present? }
 
   searchable do
+    integer :course_id
     text :email
+    join(:name, :prefix => "course", :target => Course, :type => :text, :join => { :from => :id, :to => :course_id })
+    join(:code, :prefix => "course", :target => Course, :type => :string, :join => { :from => :id, :to => :course_id })
+
   end
 
   def is_student?
