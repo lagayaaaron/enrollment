@@ -18,6 +18,11 @@ class User < ApplicationRecord
   #For year and sem validations okay
   validates :year, :sem, presence: true, if: -> { student? && course_id.present? }
 
+  searchable do
+    integer :id
+    text :email
+  end
+  
   def student?
     type == 'Student'
   end

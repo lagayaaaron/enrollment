@@ -15,13 +15,10 @@ class Student < User
     has_role?(:student)
   end
 
-  searchable do
-    integer :id
-    text :email
+ 
     # # join(:name, :prefix => "workshop", :target => Workshop, :type => :text, :join => { :from => :id, :to => :workshop_id })
     # join(:name, prefix: "profile", target: Profile, type: :text, join: { from: :id, to: :id})
     # join(:email, prefix: "profile", target: Profile, type: :text, join: { from: :id, to: :id})
     # # join(:student_id, prefix: "student", target: Profile, type: :text, join: { from: :id, to: :student_id })
-    end
 
 end

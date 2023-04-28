@@ -12,13 +12,8 @@ class Admin::StudentsController < ApplicationController
         end        
     end
     def search
-        @search = Profile.search do
-            # fulltext params[:name] do
-            #     fields(:student_name)
-            # end
-            #with(:name).starting_with(params[:name]) if params[:name].present?
+        @search = Student.search do
             any do
-                fulltext(params[:name], :fields => [:name])
                 fulltext(params[:email], :fields => [:email])
             end
             order_by :id, :asc
@@ -45,24 +40,6 @@ class Admin::StudentsController < ApplicationController
             redirect_to admin_students_path
         else
             render :new
-        end
-    end
-
-    def edit
-        if @student.profile.nil?
-            flash[:notice] = "Student profile not found."
-            redirect_to admin_students_path
-        else
-            @courses = Course.all
-        end
-    end
-
-    def update        
-        if @student_profile.update(profile_params)
-            flash[:notice] = "Profile updated successfully"
-            redirect_to admin_students_path
-        else
-            render :edit
         end
     end
 
