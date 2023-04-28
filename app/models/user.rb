@@ -8,23 +8,22 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  enum :year, {first_year: 1, second_year: 2, third_year: 3, fourth_year: 4}
-  enum :sem, {first_sem: 1, second_sem: 2}
+  enum :year, %W[1st 2nd 3rd 4th]
+  enum :sem, %W[First Second]
   #STI Attribute
   self.inheritance_column = :type
   validates :email, uniqueness: true
   #validation of course for student
-  validates :course_id, presence: true, if: -> { student? }
+  validates :course_id, presence: true, if: -> { is_student? }
   #For year and sem validations okay
-  validates :year, :sem, presence: true, if: -> { student? && course_id.present? }
+  validates :year, :sem, presence: true, if: -> { is_student? && course_id.present? }
 
   searchable do
-    integer :id
     text :email
   end
-  
-  def student?
-    type == 'Student'
+
+  def is_student?
+    User.has_role? (:student)
   end
 
 end

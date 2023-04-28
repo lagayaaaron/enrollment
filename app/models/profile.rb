@@ -3,7 +3,7 @@ class Profile < ApplicationRecord
 
   validates :name, :gender, :birthdate, :contact_number, :address, presence: true
   # validates :email, presence: true, uniqueness: true
-
+  
   searchable do
     integer :id
     text :name
