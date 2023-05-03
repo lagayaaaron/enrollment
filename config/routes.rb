@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   authenticate :user do
     root to: 'home#index'
-  
+    resource :profile
 
     namespace :admin do
       get 'dashboard' => 'dashboard#index'
@@ -18,22 +18,17 @@ Rails.application.routes.draw do
           get 'search'
         end
       end
-      resource :profile, only: [:show, :edit, :update]
 
-      # root to: 'dashboard#index'
     end
 
     namespace :instructor do
       get 'dashboard' => 'dashboard#index'
-      resource :profile, only: [:show, :edit, :update]
-      # root to: 'dashboard#index'
+
     end
 
     namespace :student do
       get 'dashboard' => 'dashboard#index'
-      resource :profile, only: [:show, :edit, :update]
-      
-      # root to: 'dashboard#index'
+
     end
   end #End of Authenticate :user do
 

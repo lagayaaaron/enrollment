@@ -1,6 +1,6 @@
 <h1>Edit Profile</h1>
 
-<%= form_for [:admin, @profile] do |f| %>
+<%= form_for [:admin, :student, @profile] do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
 
     <div class="field">
@@ -29,7 +29,7 @@
     </div>
 
     <%= f.submit "Save Changes", class: "btn btn-primary" %>
-    <%= link_to "Cancel", admin_profile_path, class: "btn btn-secondary" %>
+    <%= link_to "Cancel", admin_students_path, class: "btn btn-secondary" %>
 
 <% end %>
 
