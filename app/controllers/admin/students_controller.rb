@@ -16,14 +16,15 @@ class Admin::StudentsController < ApplicationController
             any do
                 fulltext(params[:email], :fields => [:email])
                 fulltext(params[:course], :fields => [:course_name])
+                fulltext(params[:name], :fields => [:profile_name])
             end
+            with(:profile_gender, params[:gender]) if params[:gender].present?
             with(:course_code, params[:code]) if params[:code].present?
             order_by :course_code, :asc
             paginate :page => params[:page], :per_page => 4
         end 
         # search end
         @students = @search.results
-        # raise @students.inspect
         render 'search'
     end
 

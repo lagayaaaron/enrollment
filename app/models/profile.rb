@@ -8,6 +8,7 @@ class Profile < ApplicationRecord
   
   searchable do
     integer :id
+    integer :profileable_id
     text :name
     text :email
     date :birthdate
