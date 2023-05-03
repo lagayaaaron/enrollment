@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_03_013945) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_03_074714) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -81,7 +81,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_03_013945) do
     t.integer "profileable_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["profileable_id", "profileable_type"], name: "index_profiles_on_profileable_id_and_profileable_type", unique: true
     t.index ["profileable_type", "profileable_id"], name: "index_profiles_on_profileable"
   end
 

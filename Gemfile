@@ -84,4 +84,5 @@ gem 'will_paginate'
 gem 'ancestry'
 gem "image_processing", ">= 1.2"
 gem "ruby-vips"
+gem "importmap-rails"
 
