@@ -2,6 +2,7 @@ require_relative "boot"
 
 require "rails/all"
 require 'will_paginate'
+require "vips"
 
 
 # Require the gems listed in Gemfile, including any gems
