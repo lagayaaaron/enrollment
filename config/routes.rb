@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
 
   devise_for :users, controllers: {
     sessions: 'users/sessions',
@@ -9,11 +10,12 @@ Rails.application.routes.draw do
   authenticate :user do
     root to: 'home#index'
     resource :profile
-
+    resources :courses
+    
     namespace :admin do
       get 'dashboard' => 'dashboard#index'
       resources :students do
-        resource :profile, only: [:edit, :update], module: :students
+        resource :profile, only: [:edit, :update, :destroy], module: :students
         collection do
           get 'search'
         end
