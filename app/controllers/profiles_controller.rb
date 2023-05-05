@@ -1,4 +1,5 @@
 class ProfilesController < ApplicationController
+    load_and_authorize_resource
     before_action :set_profile, only: %i[show edit update destroy]
     def new
         @profile = current_user.create_profile
@@ -24,6 +25,7 @@ class ProfilesController < ApplicationController
     end
     
     def edit
+        authorize! :update, @profile
     end
 
     def update
