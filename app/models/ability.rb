@@ -7,11 +7,12 @@ class Ability
     user ||= User.new #for guest users
     if user.present? 
       can :read, Course # additional permissions for logged in users (they can read their own bookings)
-      can :read, Profile, user_id: user.id
-
+      can [:read, :update], Profile, user_id: user.id 
+      can :create, Profile if user.profile.nil?
       if user.has_role? :administrator
         can :manage, Profile
         can :manage, Course
+      end
     end
     # Define abilities for the user here. For example:
     #

@@ -2,12 +2,12 @@ class ProfilesController < ApplicationController
     load_and_authorize_resource
     before_action :set_profile, only: %i[show edit update destroy]
     def new
-        @profile = current_user.create_profile
+        @profile = current_user.build_profile if current_user.profile.nil?
     end
 
     def create
-        @profile = current_user.create_profile(profile_params)  
-        if @profile.save
+        @profile = current_user.build_profile if current_user.profile.nil?
+        if @profile.update(profile_params)
             flash[:notice] = "Current Profile created successfully"
             redirect_to profile_path
         else
@@ -25,7 +25,6 @@ class ProfilesController < ApplicationController
     end
     
     def edit
-        authorize! :update, @profile
     end
 
     def update
