@@ -11,6 +11,7 @@ class Ability
       can :create, Profile if user.profile.nil?
       if user.has_role? :administrator
         can :manage, Profile
+        cannot :create, Profile if user.profile.present?
         can :manage, Course
       end
     end
