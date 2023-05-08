@@ -7,6 +7,19 @@ class CoursesController < ApplicationController
     @courses = Course.all
   end
 
+  def search
+      @search = Course.search do
+          any do
+              fulltext(params[:name], :fields => [:name])
+          end
+          with(:code, params[:code]) if params[:code].present?
+          order_by :code, :asc
+          paginate :page => params[:page], :per_page => 4
+      end 
+      # search end
+      @courses = @search.results
+      render 'search'
+  end
   # GET /courses/1 or /courses/1.json
   def show
   end

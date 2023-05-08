@@ -10,7 +10,11 @@ Rails.application.routes.draw do
   authenticate :user do
     root to: 'home#index'
     resource :profile
-    resources :courses
+    resources :courses do
+      collection do
+        get 'search'
+      end
+    end
     
     namespace :admin do
       get 'dashboard' => 'dashboard#index'
