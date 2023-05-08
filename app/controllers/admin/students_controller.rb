@@ -52,7 +52,7 @@ class Admin::StudentsController < ApplicationController
     def destroy
         if @student.destroy
             flash[:notice] = "Student deleted successfully"
-            redirect_to admin_dashboard_path
+            redirect_to admin_students_path
         else
             flash[:notice] = "Error"
             redirect_to admin_dashboard_path
