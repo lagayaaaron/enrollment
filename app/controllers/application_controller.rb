@@ -8,6 +8,16 @@ class ApplicationController < ActionController::Base
             format.js   { render nothing: true, status: :not_found }
         end
     end
+
+    def after_sign_in_path_for(resource)
+        stored_location_for(resource) ||
+            if resource.is_a?(User) && resource.can_publish?
+            publisher_url
+            else
+            super
+        end
+    end
+    
     protected
 
     def configure_permitted_parameters
