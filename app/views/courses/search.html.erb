@@ -2,7 +2,9 @@
 
 <div class="table-responsive">
     <h2>Courses</h2>
-    <%= link_to "New Course", new_course_path, class: "btn btn-success" %>  
+    <% if can?(:create, Course)%>
+        <%= link_to "New Course", new_course_path, class: "btn btn-success mt-2 mb-2" %>  
+    <%end%>
 </div>
 
 <%= form_tag search_courses_path, method: :get do %>
