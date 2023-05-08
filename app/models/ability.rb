@@ -10,6 +10,7 @@ class Ability
       can [:read, :update], Profile, user_id: user.id 
       can :create, Profile if user.profile.nil?
       if user.has_role? :administrator
+        can :manage, Student
         can :manage, Profile
         cannot :create, Profile if user.profile.present?
         can :manage, Course
