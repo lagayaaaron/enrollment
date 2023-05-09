@@ -14,8 +14,8 @@ class User < ApplicationRecord
   
   #STI Attribute
   self.inheritance_column = :type
-  validates :username, uniqueness: true
-  validates :email, uniqueness: true
+  validates :username, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true
   #validation of course for student
   validates :course_id, presence: true, if: -> { is_student? }
   #For year and sem validations okay
@@ -35,7 +35,6 @@ class User < ApplicationRecord
 
   def is_student?
     self.has_role?(:student)
-    puts "#{self.has_role?(:student)}"
   end
 
   def avatar_thumbnail
