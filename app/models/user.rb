@@ -24,6 +24,7 @@ class User < ApplicationRecord
   searchable do
     integer :course_id
     text :email
+    join(:name, :prefix => "profile", :target => Profile, :type => :text, :join => { :from => :profileable_id, :to => :id })
     join(:name, :prefix => "course", :target => Course, :type => :text, :join => { :from => :id, :to => :course_id })
     join(:code, :prefix => "course", :target => Course, :type => :string, :join => { :from => :id, :to => :course_id })
     # join(:name, :prefix => "profile", :target => Profile, :type => :text, :join => { :from => :id, :to => :profile_id, :include => { :profileable_type => "User" }})
