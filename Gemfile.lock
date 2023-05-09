@@ -220,6 +220,7 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     sqlite3 (1.6.2-x86_64-darwin)
+    state_machines (0.5.0)
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
     sunspot (2.6.0)
@@ -281,6 +282,7 @@ DEPENDENCIES
   selenium-webdriver
   sprockets-rails
   sqlite3 (~> 1.4)
+  state_machines
   stimulus-rails
   sunspot_rails
   sunspot_solr (~> 2.1.0)
