@@ -37,7 +37,7 @@ class CoursesController < ApplicationController
   # POST /courses or /courses.json
   def create
     @course = Course.new(course_params)
-    authorize! :create, @course
+    # authorize! :create, @course
     respond_to do |format|
       if @course.save
         format.html { redirect_to course_url(@course), notice: "Course was successfully created." }
@@ -51,6 +51,7 @@ class CoursesController < ApplicationController
 
   # PATCH/PUT /courses/1 or /courses/1.json
   def update
+    # authorize! :update, @course
     respond_to do |format|
       if @course.update(course_params)
         format.html { redirect_to course_url(@course), notice: "Course was successfully updated." }
@@ -72,6 +73,18 @@ class CoursesController < ApplicationController
     end
   end
 
+  def publish
+    @course = Course.find(params[:id])
+    @course.publish!
+    redirect_to @course
+  end
+
+  def unpublish
+    @course = Course.find(params[:id])
+    @course.unpublish!
+    redirect_to @course
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_course
@@ -80,6 +93,6 @@ class CoursesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def course_params
-      params.require(:course).permit(:code, :name, :description, :state)
+      params.require(:course).permit(:code, :name, :description)
     end
 end

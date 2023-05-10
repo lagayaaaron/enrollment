@@ -14,4 +14,16 @@
     <%= course.description %>
   </p>
 
+  <p><strong>State:</strong> <%= @course.state %></p>
+
+  <% if can? :publish, @course %>
+    <%= button_to 'Publish', publish_course_path(@course), method: :post %>
+  <% end %>
+
+  <% if can? :unpublish, @course %>
+    <%= button_to 'Unpublish', unpublish_course_path(@course), method: :post %>
+  <% end %>
+
+  
+
 </div>

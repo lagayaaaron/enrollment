@@ -11,6 +11,10 @@ Rails.application.routes.draw do
     root to: 'home#index'
     resource :profile
     resources :courses do
+      member do
+        post :publish
+        post :unpublish
+      end
       collection do
         get 'search'
       end
@@ -24,7 +28,6 @@ Rails.application.routes.draw do
           get 'search'
         end
       end
-
     end
 
     namespace :instructor do
