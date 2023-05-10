@@ -16,7 +16,10 @@
         <%= text_field_tag :code, params[:code], placeholder: "Course Code", class: "form-control" %>
     </div>
     <div class="col-md-2">
-    <%= submit_tag "Search", class: "btn btn-primary" %>
+        <%= select_tag :state, options_for_select([['Published', 'published'], ['Unpublished', 'unpublished']], params[:state]), include_blank: true, class: "form-control" %>
+    </div>
+    <div class="col-md-2">
+        <%= submit_tag "Search", class: "btn btn-primary" %>
     </div>
 </div>
 <% end %>

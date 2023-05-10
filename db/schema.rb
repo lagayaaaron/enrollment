@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_10_014729) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_10_052230) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -62,6 +62,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_10_014729) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "state"
+    t.index ["state"], name: "index_courses_on_state"
   end
 
   create_table "instructors", force: :cascade do |t|
@@ -126,7 +127,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_10_014729) do
     t.string "ancestry"
     t.string "code"
     t.index ["ancestry"], name: "index_subjects_on_ancestry"
-    t.index ["course_id"], name: "index_subjects_on_course_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -163,6 +163,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_10_014729) do
   add_foreign_key "students", "courses"
   add_foreign_key "subject_schedules", "instructors"
   add_foreign_key "subject_schedules", "subjects"
-  add_foreign_key "subjects", "courses"
   add_foreign_key "users", "courses"
 end

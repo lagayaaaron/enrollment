@@ -44,8 +44,8 @@
         <td><%= student.email %></td>
         <td><%= student.profile.name if student.profile&.name.present? %></td>
         <td><%= student.profile.gender if student.profile&.gender.present? %></td>
-        <td><%= student.course.name %></td>
-        <td><%= student.course.code %></td>
+        <td><%= student.course.name if student.course&.name.present? %></td>
+        <td><%= student.course.code if student.course&.code.present? %></td>
         <td><%= student.year %></td>
         <td><%= student.sem %></td>
         <td><%= link_to 'Edit Student Account', edit_admin_student_path(student) %> | 

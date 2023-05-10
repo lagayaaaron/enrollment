@@ -4,7 +4,8 @@
         <th>Code</th>
         <th>Name</th>
         <th>Description</th>
-        <th>Actions</th>
+        <th>State</th>
+        <th colspan="3">Actions</th>
     </tr>
     </thead>
     <tbody id="courses">
@@ -13,11 +14,10 @@
         <td><%= course.code %></td>
         <td><%= course.name %></td>
         <td><%= course.description %></td>
-        <td>
-            <%= link_to "Show", course, class: "btn btn-default" %>
-            <%= link_to "Edit", edit_course_path(course), class: "btn btn-primary" %>
-            <%= link_to "Delete", course, method: :delete, data: { confirm: "Are you sure you want to delete this course?" }, class: "btn btn-danger" %>
-        </td>
+        <td><%= course.state if course.state.present? %></td>
+        <td><%= link_to "Show", course, class: "btn btn-light" %>  </td>
+        <td><%= link_to "Edit", edit_course_path(course), class: "btn btn-primary" %></td>
+        <td><%= link_to "Delete", course, method: :delete, data: { confirm: "Are you sure you want to delete this course?" }, class: "btn btn-danger" %></td>
         </tr>
     <% end %>
     </tbody>

@@ -19,7 +19,7 @@ class Course < ApplicationRecord
         end
         
         event :unpublish do
-            transition published: :unpublished
+            transition any => :unpublished
         end
     end
 

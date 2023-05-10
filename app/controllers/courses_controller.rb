@@ -12,6 +12,7 @@ class CoursesController < ApplicationController
           any do
               fulltext(params[:name], :fields => [:name])
           end
+          with(:state, params[:state]) if params[:state].present?
           with(:code, params[:code]) if params[:code].present?
           order_by :code, :asc
           paginate :page => params[:page], :per_page => 4
@@ -79,6 +80,6 @@ class CoursesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def course_params
-      params.require(:course).permit(:code, :name, :description)
+      params.require(:course).permit(:code, :name, :description, :state)
     end
 end
