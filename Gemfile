@@ -86,4 +86,5 @@ gem "image_processing", ">= 1.2"
 gem "ruby-vips"
 gem "importmap-rails"
 gem 'cancancan'
-gem 'state_machines'
+gem "state_machines"
+gem 'state_machines-activerecord'
