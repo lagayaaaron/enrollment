@@ -5,19 +5,21 @@ class Course < ApplicationRecord
     validates :code, presence: true, uniqueness: true
     validates :name, presence: true
     validates :description, presence: true
-
+    
     searchable do
         integer :id
         string :code
         text :name
+        string :state
     end
 
     state_machine :state, initial: :unpublished do
         event :publish do
             transition unpublished: :published
         end
+        
         event :unpublish do
-            transition publlished: :unpublished
+            transition published: :unpublished
         end
     end
 
