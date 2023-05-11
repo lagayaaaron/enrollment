@@ -6,7 +6,7 @@ class Ability
   def initialize(user)
     user ||= User.new #for guest users
     if user.present? 
-      can :read, Course # additional permissions for logged in users (they can read their own bookings)
+      can [:read, :search], Course, state: :published # additional permissions for logged in users (they can read their own bookings)
       can [:read, :update], Profile, user_id: user.id 
       can :create, Profile if user.profile.nil?
       if user.has_role? :administrator

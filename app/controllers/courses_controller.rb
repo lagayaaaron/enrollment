@@ -4,11 +4,12 @@ class CoursesController < ApplicationController
 
   # GET /courses or /courses.json
   def index
-    @courses = Course.all
+    @courses = Course.accessible_by(current_ability)
   end
 
   def search
       @search = Course.search do
+          with(:state, :published)
           any do
               fulltext(params[:name], :fields => [:name])
           end
