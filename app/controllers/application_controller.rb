@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
     protect_from_forgery
     check_authorization unless: :devise_controller?
     before_action :configure_permitted_parameters, if: :devise_controller?
-    before_action :set_paper_trail_whodunnit
+    before_action :user_for_paper_trail
     
     rescue_from CanCan::AccessDenied do |exception|
         if current_user.nil?
@@ -24,6 +24,10 @@ class ApplicationController < ActionController::Base
             else
             super
         end
+    end
+
+    def user_for_paper_trail
+        user_signed_in? ? current_user.username : 'Public user'  # or whatever
     end
     protected
 

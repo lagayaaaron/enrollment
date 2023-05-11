@@ -24,6 +24,7 @@ class CoursesController < ApplicationController
   end
   # GET /courses/1 or /courses/1.json
   def show
+    @versions = @course.versions
   end
 
   # GET /courses/new
@@ -84,6 +85,14 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
     @course.unpublish!
     redirect_to @course
+  end
+
+  def rollback
+    @course = Course.find(params[:id])
+    @version = @course.versions.find(params[:version])
+    @course = @version.reify
+    @course.save
+    redirect_to course_path(@course)
   end
 
   private

@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       member do
         post :publish
         post :unpublish
+        get :rollback
       end
       collection do
         get 'search'

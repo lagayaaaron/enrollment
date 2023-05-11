@@ -5,6 +5,31 @@
 <div>
   <%= link_to "Edit this course", edit_course_path(@course) %> |
   <%= link_to "Back to courses", courses_path %>
-
   <%= button_to "Destroy this course", @course, method: :delete%>
 </div>
+<% if @versions.any? %>
+  <div>
+  <table class="table">
+      <thead>
+      <tr>
+          <th>Version</th>
+          <th>Changes</th>
+          <th>Modified by</th>
+          <th>Date</th>
+          <th>Action</th>
+      </tr>
+      </thead>
+      <tbody id="courses">
+      <% @versions.each do |version| %>
+        <tr>
+          <td><%= version.index %></td>
+          <td><%= version.changeset %></td>
+          <td><%= version.whodunnit %></td>
+          <td><%= version.created_at %></td>
+          <td><%= link_to "Rollback", rollback_course_path(@course, version), method: :post %></td>
+        </tr>
+      <% end %>
+      </tbody>
+  </table>
+  </div>
+<% end %>
