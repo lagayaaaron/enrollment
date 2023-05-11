@@ -9,7 +9,7 @@ class CoursesController < ApplicationController
 
   def search
       @search = Course.search do
-          with(:state, :published)
+          with(:state, :published) if current_user.has_role? (:student)
           any do
               fulltext(params[:name], :fields => [:name])
           end
