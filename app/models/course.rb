@@ -1,4 +1,6 @@
 class Course < ApplicationRecord
+    has_paper_trail
+    
     has_many :subjects, dependent: :destroy
     has_many :students
     
