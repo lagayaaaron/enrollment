@@ -155,6 +155,9 @@ GEM
       racc (~> 1.4)
     options (2.3.2)
     orm_adapter (0.5.0)
+    paper_trail (14.0.0)
+      activerecord (>= 6.0)
+      request_store (~> 1.4)
     pr_geohash (1.0.0)
     progress_bar (1.3.3)
       highline (>= 1.6, < 3)
@@ -196,6 +199,8 @@ GEM
     regexp_parser (2.8.0)
     reline (0.3.3)
       io-console (~> 0.5)
+    request_store (1.5.1)
+      rack (>= 1.4)
     responders (3.1.0)
       actionpack (>= 5.2)
       railties (>= 5.2)
@@ -280,6 +285,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   jsbundling-rails
+  paper_trail
   progress_bar
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.3)

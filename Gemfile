@@ -88,3 +88,4 @@ gem "importmap-rails"
 gem 'cancancan'
 gem "state_machines"
 gem 'state_machines-activerecord'
+gem 'paper_trail'
