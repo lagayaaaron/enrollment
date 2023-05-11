@@ -23,10 +23,18 @@
       <% @versions.each do |version| %>
         <tr>
           <td><%= version.index %></td>
-          <td><%= version.changeset %></td>
+          <td>
+            <ul>
+              <% version.changeset.each do |attribute, change| %>
+                <li><strong><%= attribute %>:</strong> <%= change[0] %> to <%= change[1] %></li>
+              <% end %>
+            </ul>
+          </td>
           <td><%= version.whodunnit %></td>
           <td><%= version.created_at %></td>
-          <td><%= link_to "Rollback", rollback_course_path(@course, version), method: :post %></td>
+          <td><%= version.event %></td>
+          <td><%= version.item_type %></td>
+          <td><%= link_to "Rollback", rollback_course_path(@course, version: version)%></td>
         </tr>
       <% end %>
       </tbody>

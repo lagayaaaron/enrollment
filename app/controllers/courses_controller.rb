@@ -38,6 +38,7 @@ class CoursesController < ApplicationController
 
   # POST /courses or /courses.json
   def create
+    PaperTrail.request.whodunnit = current_user.username
     @course = Course.new(course_params)
     # authorize! :create, @course
     respond_to do |format|
@@ -54,6 +55,7 @@ class CoursesController < ApplicationController
   # PATCH/PUT /courses/1 or /courses/1.json
   def update
     # authorize! :update, @course
+    PaperTrail.request.whodunnit = current_user.username
     respond_to do |format|
       if @course.update(course_params)
         format.html { redirect_to course_url(@course), notice: "Course was successfully updated." }
@@ -67,8 +69,8 @@ class CoursesController < ApplicationController
 
   # DELETE /courses/1 or /courses/1.json
   def destroy
+    PaperTrail.request.whodunnit = current_user.username
     @course.destroy
-
     respond_to do |format|
       format.html { redirect_to courses_url, notice: "Course was successfully destroyed." }
       format.json { head :no_content }
@@ -88,6 +90,7 @@ class CoursesController < ApplicationController
   end
 
   def rollback
+    PaperTrail.request.whodunnit = current_user.username
     @course = Course.find(params[:id])
     @version = @course.versions.find(params[:version])
     @course = @version.reify
