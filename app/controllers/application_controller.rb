@@ -2,7 +2,8 @@ class ApplicationController < ActionController::Base
     protect_from_forgery
     check_authorization unless: :devise_controller?
     before_action :configure_permitted_parameters, if: :devise_controller?
-
+    before_action :set_paper_trail_whodunnit
+    
     rescue_from CanCan::AccessDenied do |exception|
         if current_user.nil?
             session[:next] = request.fullpath
