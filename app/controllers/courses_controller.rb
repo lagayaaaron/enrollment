@@ -4,7 +4,6 @@ class CoursesController < ApplicationController
 
   # GET /courses or /courses.json
   def index
-    @courses = Course.accessible_by(current_ability)
   end
 
   def search
