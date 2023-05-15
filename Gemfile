@@ -89,3 +89,4 @@ gem 'cancancan'
 gem "state_machines"
 gem 'state_machines-activerecord'
 gem 'paper_trail'
+gem "letter_opener", group: :development
