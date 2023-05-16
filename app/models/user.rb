@@ -4,9 +4,10 @@ class User < ApplicationRecord
   #For course optional
   belongs_to :course, optional: true   
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  #  :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable
+         :recoverable, :rememberable, :validatable, 
+         :confirmable, :lockable
 
   attr_writer :login
 
@@ -26,7 +27,7 @@ class User < ApplicationRecord
   validates :year, :sem, presence: true, if: -> { is_student? && course_id.present? }
 
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
-  
+
   searchable do
     integer :id
     integer :course_id
