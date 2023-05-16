@@ -7,7 +7,6 @@ class Profile < ApplicationRecord
   # validates :email, presence: true, uniqueness: true
   
   searchable do
-    integer :id
     integer :profileable_id
     text :name
     text :email
