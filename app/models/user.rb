@@ -25,6 +25,8 @@ class User < ApplicationRecord
   #For year and sem validations okay
   validates :year, :sem, presence: true, if: -> { is_student? && course_id.present? }
 
+  validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
+  
   searchable do
     integer :id
     integer :course_id
