@@ -4,12 +4,13 @@
   <%= render "users/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= image_tag(resource.avatar_thumbnail) if resource.avatar.attached? %>
+    <%= image_tag(resource.avatar_thumbnail) %>
   </div>
 
   <div class="field">
     <%= f.file_field :avatar%>
   </div>
+
   <div class="field">
     <%= f.label :username %><br />
     <%= f.text_field :username, autocomplete: "email" %>

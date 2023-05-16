@@ -8,10 +8,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, 
          :confirmable, :lockable
-
-  attr_writer :login
-
   has_one_attached :avatar
+  attr_writer :login
 
   enum :year, %W[1st 2nd 3rd 4th]
   enum :sem, %W[First Second]
