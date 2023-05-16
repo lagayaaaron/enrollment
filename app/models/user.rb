@@ -4,10 +4,10 @@ class User < ApplicationRecord
   #For course optional
   belongs_to :course, optional: true   
   # Include default devise modules. Others available are:
-  #  :timeoutable, :trackable and :omniauthable
+  #  :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, 
-         :confirmable, :lockable
+         :confirmable, :lockable, :trackable
   has_one_attached :avatar
   attr_writer :login
 
