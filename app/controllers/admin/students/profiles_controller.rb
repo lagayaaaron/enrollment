@@ -9,17 +9,16 @@ class Admin::Students::ProfilesController < ApplicationController
         if @student.profile.nil?
             flash[:notice] = "Student profile not found."
             redirect_to admin_students_path
-        else   
-            @profile = @student.profile
+        # else   
+        #     @profile = @student.profile
         end
     end
 
     def update
-        @profile = @student.profile
         if @profile.update(profile_params)
-        redirect_to admin_student_path(@student), notice: "Profile updated successfully."
+            redirect_to admin_students_path, notice: "Profile updated successfully."
         else
-        render :edit
+            render :edit
         end
     end
 
@@ -30,6 +29,6 @@ class Admin::Students::ProfilesController < ApplicationController
     end
 
     def profile_params
-        params.require(:profile).permit(:name, :email, :phone)
+        params.require(:profile).permit(:name, :email, :phone, :address, :birthdate)
     end
 end

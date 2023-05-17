@@ -1,17 +1,24 @@
 <h1>All Students</h1>
 <%= form_tag admin_students_path, method: :get do %>
 <div class="row">
+
   <div class="col-md-2">
     <%= text_field_tag :query, params[:query], placeholder: "Email", class: "form-control" %>
   </div>
+
   <div class="col-md-2">
     <%= submit_tag "Search", class: "btn btn-primary" %>
   </div>
 </div>
-
+<div class="col-md-2">
+    <%= link_to "Add new Student", new_admin_student_path%>
+</div>
+<div class="col-md-2">
+    <%= link_to "Go to Advanced Search", search_admin_students_path%>
+</div>
 </div>
 <% end %>
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>ID</th>
@@ -32,8 +39,8 @@
         <td><%= student.course.name if student.course&.name.present?%></td>
         <td><%= student.year %></td>
         <td><%= student.sem %></td>
-        <td><%= link_to 'Edit Student Account', edit_admin_student_path(student) %> | </td>
-        <td><%= link_to 'Edit Profile', edit_admin_student_profile_path(student) %> | </td>
+        <td><%= link_to 'Edit Student Account', edit_admin_student_path(student) %></td>
+        <td><%= link_to 'Edit Profile', edit_admin_student_profile_path(student) %></td>
         <td><%= button_to "Delete", admin_student_path(student), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-outline-danger btn-sm" %></td>
       </tr>
     <% end %>

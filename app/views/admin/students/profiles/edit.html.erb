@@ -1,6 +1,6 @@
 <h1>Edit Profile</h1>
 
-<%= form_for [:admin, :student, @profile] do |f| %>
+<%= form_for [:admin, @student, @profile] do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
 
     <div class="field">
