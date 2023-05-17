@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_16_064728) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_17_092640) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -126,7 +126,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_16_064728) do
     t.integer "course_id"
     t.string "ancestry"
     t.string "code"
+    t.string "subject_type", default: "Major"
+    t.string "year", default: "1st"
+    t.string "semester", default: "1st Sem"
     t.index ["ancestry"], name: "index_subjects_on_ancestry"
+    t.index ["semester"], name: "index_subjects_on_semester"
+    t.index ["subject_type"], name: "index_subjects_on_subject_type"
+    t.index ["year"], name: "index_subjects_on_year"
   end
 
 # Could not dump table "users" because of following StandardError
