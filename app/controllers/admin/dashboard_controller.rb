@@ -1,6 +1,7 @@
 class Admin::DashboardController < DashboardController
     before_action :authenticate_user!
     before_action :authorize_admin
+    skip_authorization_check
 
     def index
         @students = Student.count

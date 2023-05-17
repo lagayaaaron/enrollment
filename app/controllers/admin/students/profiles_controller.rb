@@ -1,5 +1,9 @@
 class Admin::Students::ProfilesController < ApplicationController
-before_action :set_student
+    # before_action :set_student
+    # authorize_resource
+    load_and_authorize_resource :student
+    load_and_authorize_resource :profile, through: :student, singleton: true
+    # before_action :set_student
 
     def edit
         if @student.profile.nil?

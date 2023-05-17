@@ -1,7 +1,6 @@
 class DashboardController < ApplicationController
     before_action :authenticate_user!
     # before_action :check_role
-
     private
         def check_role
 
