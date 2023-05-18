@@ -1,10 +1,17 @@
+<!-- subjects/show.html.erb -->
+
 <h1><%= @subject.name %></h1>
-
 <p><strong>Code:</strong> <%= @subject.code %></p>
-<p><strong>Subject Type:</strong> <%= @subject.subject_type %></p>
-<p><strong>Year:</strong> <%= @subject.year %></p>
-<p><strong>Semester:</strong> <%= @subject.semester %></p>
-<p><strong>Course:</strong> <%= @subject.course.name %></p>
 
-<p><%= link_to 'Edit', edit_subject_path(@subject) %></p>
-<p><%= link_to 'Back', subjects_path %></p>
+<h2>Child Subjects</h2>
+<% if @child_subjects.any? %>
+    <ul>
+    <% @child_subjects.each do |child_subject| %>
+        <li><%= child_subject.name %> - <%= child_subject.code %></li>
+    <% end %>
+    </ul>
+<% else %>
+    <p>No child subjects found.</p>
+<% end %>
+
+<%= link_to 'Create Child Subject', new_child_subject_path(@subject) %>

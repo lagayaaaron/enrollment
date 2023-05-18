@@ -1,0 +1,48 @@
+<!-- subjects/_form_child.html.erb -->
+
+<%= form_with(model: [parent_subject, child_subject], url: create_child_subject_path(parent_subject)) do |form| %>
+  <% if child_subject.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(child_subject.errors.count, 'error') %> prohibited this subject from being saved:</h2>
+      <ul>
+        <% child_subject.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :code %>
+    <%= form.text_field :code %>
+  </div>
+
+  <div class="field">
+    <%= form.label :subject_type %>
+    <%= form.select :subject_type, Subject.subject_types.keys %>
+  </div>
+
+  <div class="field">
+    <%= form.label :year %>
+    <%= form.select :year, Subject.years.keys %>
+  </div>
+
+  <div class="field">
+    <%= form.label :semester %>
+    <%= form.select :semester, Subject.semesters.keys %>
+  </div>
+
+  <div class="field">
+    <%= form.label :course_id %>
+    <%= form.collection_select :course_id, Course.all, :id, :name, include_blank: true %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Create Child Subject' %>
+  </div>
+<% end %>

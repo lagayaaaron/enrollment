@@ -11,7 +11,10 @@ Rails.application.routes.draw do
   authenticate :user do
     root to: 'home#index'
     resource :profile
-    resources :subjects
+    resources :subjects do
+      get 'new_child', on: :member
+      post 'create_child', on: :member
+    end
     resources :courses do
       member do
         post :publish
