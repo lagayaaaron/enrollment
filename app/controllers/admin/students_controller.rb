@@ -46,6 +46,20 @@ class Admin::StudentsController < ApplicationController
             render :new
         end
     end
+    
+    def edit
+        @courses = Course.all
+    end
+
+    def update
+        @courses = Course.all
+
+        if @student.update(user_params)
+            redirect_to admin_students_path, notice: "Student Account updated successfully."
+        else
+            render :edit
+        end
+    end
 
     def show
     end
@@ -68,7 +82,7 @@ class Admin::StudentsController < ApplicationController
     end
 
     def user_params
-        params.require(:student).permit(:email, :password, :password_confirmation, :course_id, :year, :sem)
+        params.require(:student).permit(:username, :email, :password, :password_confirmation, :course_id, :year, :sem)
     end
 
     def profile_params

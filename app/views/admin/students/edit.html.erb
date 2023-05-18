@@ -1,37 +1,29 @@
-<h1>Edit Student Profile</h1>
+<h1>Edit Student</h1>
 
-<%= form_for [:admin, @student, @student_profile], url: admin_student_path(@student, @student_profile), method: :put do |f| %>
-<%= render 'shared/error_messages', object: f.object %>
+<%= form_for [:admin, @student] do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
 
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
+  <%= f.label :username %>
+  <%= f.text_field :username, class: 'form-control' %>
 
-  <div class="field">
-    <%= f.label :gender %>
-    <%= f.select :gender, options_for_select(['Male', 'Female', 'Other'], @student.profile.gender) %>
-  </div>
+  <%= f.label :email %>
+  <%= f.email_field :email, autocomplete: "email", class: 'form-control' %>
 
-  <div class="field">
-    <%= f.label :birthdate %>
-    <%= f.date_select :birthdate, :start_year => Date.today.year - 100, :end_year => Date.today.year - 5 %>
-  </div>
+  <%= f.label :password %>
+  <%= f.password_field :password, autocomplete: "password", class: 'form-control' %>
 
-  <div class="field">
-    <%= f.label :contact_number %>
-    <%= f.text_field :contact_number %>
-  </div>
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation, class: 'form-control' %>
+  
+  <%# Add a collection of courses for the student %>
+  <%= f.label :course_id %>
+  <%= f.collection_select :course_id, @courses, :id, :name, { selected: @student.course&.id }, class: "form-control" %>
 
-  <div class="field">
-    <%= f.label :address %>
-    <%= f.text_area :address %>
-  </div>
+  <%= f.label :year %>
+  <%= f.select :year, User.years.keys, { selected: @student.year }, include_blank: true %>
 
-  <div class="actions">
-    <%= f.submit "Update Profile", class: "btn btn-primary" %>
-  </div>
-  <%= link_to 'Delete Profile', admin_students_path, method: :delete, data: { confirm: 'Are you sure you want to delete this profile?' }, class: 'btn btn-danger' %>
+  <%= f.label :sem %>
+  <%= f.select :sem, User.sems.keys, { selected: @student.sem }, include_blank: true %>
 
+  <p><%= f.submit "Update Student", class: "btn btn-primary mt-3" %></p>
 <% end %>
-
