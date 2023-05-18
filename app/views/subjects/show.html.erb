@@ -1,0 +1,10 @@
+<h1><%= @subject.name %></h1>
+
+<p><strong>Code:</strong> <%= @subject.code %></p>
+<p><strong>Subject Type:</strong> <%= @subject.subject_type %></p>
+<p><strong>Year:</strong> <%= @subject.year %></p>
+<p><strong>Semester:</strong> <%= @subject.semester %></p>
+<p><strong>Course:</strong> <%= @subject.course.name %></p>
+
+<p><%= link_to 'Edit', edit_subject_path(@subject) %></p>
+<p><%= link_to 'Back', subjects_path %></p>

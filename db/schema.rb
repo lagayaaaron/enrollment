@@ -126,9 +126,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_17_092640) do
     t.integer "course_id"
     t.string "ancestry"
     t.string "code"
-    t.string "subject_type", default: "Major"
-    t.string "year", default: "1st"
-    t.string "semester", default: "1st Sem"
+    t.integer "subject_type", default: 0
+    t.integer "year", default: 1
+    t.integer "semester", default: 1
     t.index ["ancestry"], name: "index_subjects_on_ancestry"
     t.index ["semester"], name: "index_subjects_on_semester"
     t.index ["subject_type"], name: "index_subjects_on_subject_type"

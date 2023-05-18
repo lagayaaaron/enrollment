@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   authenticate :user do
     root to: 'home#index'
     resource :profile
+    resources :subjects
     resources :courses do
       member do
         post :publish

@@ -4,7 +4,8 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    user ||= User.new #for guest users
+    user ||= User.new 
+    can :manage, Subject#for guest users
     if user.present? 
       can [:read, :search], Course, state: :published 
       can [:read, :update], Profile, user_id: user.id # additional permissions for logged in users (they can read their own bookings)
