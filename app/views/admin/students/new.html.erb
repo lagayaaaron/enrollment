@@ -1,5 +1,4 @@
 <h1>New Student</h1>
-
 <%= form_for [:admin, @student], method: :post do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
@@ -15,31 +14,32 @@
   <%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation, class: 'form-control' %>
 
-  <%= f.fields_for :student_profile do |s| %>
-    <%= s.label :name %>
-    <%= s.text_field :name, class: 'form-control' %>
+        <%= f.fields_for :student_profile do |s| %>
+          <%= s.label :name %>
+          <%= s.text_field :name, class: 'form-control' %>
 
-    <%= s.label :gender %>
-    <%= s.select :gender, [['Male', 'Male'], ['Female', 'Female']], {}, class: 'form-control' %>
+          <%= s.label :gender %>
+          <%= s.select :gender, [['Male', 'Male'], ['Female', 'Female']], {}, class: 'form-control' %>
 
-    <%= s.label :birthdate %>
-    <%= s.date_field :birthdate, class: 'form-control' %>
+          <%= s.label :birthdate %>
+          <%= s.date_field :birthdate, class: 'form-control' %>
 
-    <%= s.label :contact_number %>
-    <%= s.text_field :contact_number, class: 'form-control' %>
+          <%= s.label :contact_number %>
+          <%= s.text_field :contact_number, class: 'form-control' %>
 
-    <%= s.label :address %>
-    <%= s.text_field :address, class: 'form-control' %>
-  <% end %>
+          <%= s.label :address %>
+          <%= s.text_field :address, class: 'form-control' %>
+        <% end %>
 
-    <%= f.label :course_id %>
-    <%= f.collection_select :course_id, @courses, :id, :name, class: 'form-control'%>
+  <%= f.label :course_id %>
+  <%= f.collection_select :course_id, @courses, :id, :name, { prompt: 'Select a course' }, class: 'form-control' %>
 
-    <%= f.label :year %>
-    <%= f.select :year, User.years.keys, include_blank: true, class: 'form-control'%>
+  <%= f.label :year %>
+  <%= f.select :year, User.years.keys, { prompt: 'Select a year' }, class: 'form-control' %>
 
-    <%= f.label :sem %>
-    <%= f.select :sem, User.sems.keys, include_blank: true, class: 'form-control'%>
+  <%= f.label :sem %>
+  <%= f.select :sem, User.sems.keys, { prompt: 'Select a semester' }, class: 'form-control' %>
     
   <p><%= f.submit "Create Student", class: 'btn btn-primary mt-3' %></p>
 <% end %>
+
