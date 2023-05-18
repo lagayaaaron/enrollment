@@ -13,6 +13,7 @@
             <% end %>
         <% if current_user.has_role? (:administrator)%>
             <li class="nav-item"><%= link_to "View Dashboard", admin_dashboard_path, class: "nav-link" %></li>
+            <li class="nav-item"><%= link_to "View Subjects", subjects_path, class: "nav-link" %></li>
         <% end %>
         <% if can?(:read, Student) %>
             <li class="nav-item"></li><%= link_to "View Students", admin_students_path, class: "nav-link" %></li>
