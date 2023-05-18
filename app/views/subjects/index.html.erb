@@ -1,7 +1,7 @@
 <h1>Parent Subjects</h1>
 
 <p><%= link_to 'Create New Parent Subject', new_subject_path %></p>
-<table>
+<table class="table">
     <thead>
         <tr>
             <th>Name</th>
@@ -23,10 +23,9 @@
             <td><%= parent_subject.semester %></td>
             <td><%= parent_subject.course.name %></td>
             <td>
-                <%= link_to 'Show', subject_path(parent_subject) %>
-                <%= link_to 'Create Child Subject', new_child_subject_path(parent_subject) %>
-                <%= link_to 'Edit', edit_subject_path(parent_subject) %>
-                <%= link_to 'Delete', subject_path(parent_subject), method: :delete, data: { confirm: 'Are you sure you want to delete this subject?' } %>
+                <%= link_to 'Show', subject_path(parent_subject), class: "btn btn-primary btn-sm" %>
+                <%= link_to 'Edit', edit_subject_path(parent_subject), class: "btn btn-secondary btn-sm" %>
+                <%= link_to 'Delete', subject_path(parent_subject), method: :delete, data: { confirm: 'Are you sure you want to delete this subject?' }, class: "btn btn-danger btn-sm" %>
             </td>
             </tr>
         <% end %>
