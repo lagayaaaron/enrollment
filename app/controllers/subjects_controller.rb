@@ -7,7 +7,8 @@ class SubjectsController < ApplicationController
     end
     
     def show
-        @child_subjects = @subject.children
+        @parent_subject = Subject.find(params[:id])
+        @child_subjects = @parent_subject.children
     end
     
     def new

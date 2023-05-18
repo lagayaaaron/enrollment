@@ -1,17 +1,37 @@
 <!-- subjects/show.html.erb -->
 
-<h1><%= @subject.name %></h1>
-<p><strong>Code:</strong> <%= @subject.code %></p>
+<p class="lead"><strong>Subjects for <%= @subject.course.name %></strong></p>
+<hr>
+<h4>Sub Subjects</h4>
 
-<h2>Child Subjects</h2>
-<% if @child_subjects.any? %>
-    <ul>
-    <% @child_subjects.each do |child_subject| %>
-        <li><%= child_subject.name %> - <%= child_subject.code %></li>
-    <% end %>
-    </ul>
-<% else %>
-    <p>No child subjects found.</p>
+<p><%= link_to 'Create Sub Subject', new_child_subject_path(@subject) %></p>
+<% if @parent_subject.children.present? %>
+<table class = "table">
+    <thead>
+        <tr>
+        <th>Name</th>
+        <th>Code</th>
+        <th>Subject Type</th>
+        <th>Year</th>
+        <th>Semester</th>
+        <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @parent_subject.children.each do |child_subject| %>
+        <tr>
+            <td><%= child_subject.name %></td>
+            <td><%= child_subject.code %></td>
+            <td><%= child_subject.subject_type %></td>
+            <td><%= child_subject.year %></td>
+            <td><%= child_subject.semester %></td>
+            <td>
+            <%= link_to 'Edit', edit_subject_path(child_subject) %>
+            <%= link_to 'Delete', subject_path(child_subject), method: :delete, data: { confirm: 'Are you sure you want to delete this subject?' } %>
+            </td>
+        </tr>
+        <% end %>
+    </tbody>
+    </table>
 <% end %>
-
-<%= link_to 'Create Child Subject', new_child_subject_path(@subject) %>
+<%= link_to 'Back to Subjects', subjects_path %>
