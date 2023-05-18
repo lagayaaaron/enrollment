@@ -6,7 +6,9 @@ class Admin::StudentsController < ApplicationController
         if params[:query]
             @search = Student.search do
                 fulltext params[:query]
+                order_by :id, :asc
             end
+            
             @students = @search.results
         else
             @students = Student.includes(:course, :profile).all

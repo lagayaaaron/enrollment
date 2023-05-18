@@ -20,10 +20,10 @@
   <%= f.collection_select :course_id, @courses, :id, :name, { selected: @student.course&.id }, class: "form-control" %>
 
   <%= f.label :year %>
-  <%= f.select :year, User.years.keys, { selected: @student.year }, include_blank: true %>
+  <%= f.select :year, User.years.keys, { selected: @student.year }, include_blank: true, class: "form-control" %>
 
   <%= f.label :sem %>
-  <%= f.select :sem, User.sems.keys, { selected: @student.sem }, include_blank: true %>
+  <%= f.select :sem, User.sems.keys, { selected: @student.sem }, include_blank: true, class: "form-control" %>
 
   <p><%= f.submit "Update Student", class: "btn btn-primary mt-3" %></p>
 <% end %>
