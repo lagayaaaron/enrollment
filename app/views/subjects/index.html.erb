@@ -1,14 +1,10 @@
 <h1>Parent Subjects</h1>
 
-<p><%= link_to 'Create New Parent Subject', new_subject_path %></p>
+<p><%= link_to 'Create New Parent Subject', new_subject_path, class: "btn btn-secondary btn-sm"%></p>
 <table class="table">
     <thead>
         <tr>
-            <th>Name</th>
             <th>Code</th>
-            <th>Subject Type</th>
-            <th>Year</th>
-            <th>Semester</th>
             <th>Course</th>
             <th>Actions</th>
         </tr>
@@ -16,11 +12,7 @@
     <tbody>
         <% @parent_subjects.each do |parent_subject| %>
             <tr>
-            <td><%= parent_subject.name %></td>
             <td><%= parent_subject.code %></td>
-            <td><%= parent_subject.subject_type %></td>
-            <td><%= parent_subject.year %></td>
-            <td><%= parent_subject.semester %></td>
             <td><%= parent_subject.course.name %></td>
             <td>
                 <%= link_to 'Show', subject_path(parent_subject), class: "btn btn-primary btn-sm" %>
