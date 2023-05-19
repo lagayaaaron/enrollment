@@ -1,6 +1,6 @@
 class AddUidToUsers < ActiveRecord::Migration[7.0]
   def change
-    add_column :users, :uid, :string
-    add_index :users, :uid
+    add_column :users, :public_uid, :string
+    add_index :users, :public_uid
   end
 end
