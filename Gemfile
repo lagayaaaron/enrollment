@@ -91,3 +91,4 @@ gem 'state_machines-activerecord'
 gem 'paper_trail'
 gem "letter_opener", group: :development
 gem 'devise-encryptable'
+gem 'public_uid'

@@ -169,6 +169,8 @@ GEM
       highline (>= 1.6, < 3)
       options (~> 2.3.0)
     public_suffix (5.0.1)
+    public_uid (2.2.0)
+      activerecord (> 4.2)
     puma (5.6.5)
       nio4r (~> 2.0)
     racc (1.6.2)
@@ -295,6 +297,7 @@ DEPENDENCIES
   letter_opener
   paper_trail
   progress_bar
+  public_uid
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.3)
   rolify
