@@ -57,7 +57,7 @@ class Admin::StudentsController < ApplicationController
     def update
         @courses = Course.all
 
-        if @student.update(user_params)
+        if @student.update(student_params)
             redirect_to admin_students_path, notice: "Student Account updated successfully."
         else
             render :edit
@@ -80,7 +80,7 @@ class Admin::StudentsController < ApplicationController
     private
 
     def set_student
-        @student = Student.find(params[:public_uid])
+        @student = Student.find_puid(params[:id])
         @student_profile = @student.profile
     end
 

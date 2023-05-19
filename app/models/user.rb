@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  include PublicUid::ModelConcern
   rolify
   generate_public_uid generator: PublicUid::Generators::HexStringSecureRandom.new(12)
   
@@ -63,6 +64,5 @@ class User < ApplicationRecord
     end
   end
 
- 
   
 end
