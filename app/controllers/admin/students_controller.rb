@@ -38,7 +38,7 @@ class Admin::StudentsController < ApplicationController
     end
 
     def create
-        @student = Student.new(user_params)
+        @student = Student.new(student_params)
         @courses = Course.all
         
         if @student.save
@@ -80,12 +80,12 @@ class Admin::StudentsController < ApplicationController
     private
 
     def set_student
-        @student = Student.find(params[:id])
+        @student = Student.find(params[:public_uid])
         @student_profile = @student.profile
     end
 
-    def user_params
-        params.require(:student).permit(:username, :email, :password, :password_confirmation, :course_id, :year, :sem)
+    def student_params
+        params.require(:student).permit(:username, :email, :password, :password_confirmation, :course_id, :year, :sem, :public_uid)
     end
 
     def profile_params

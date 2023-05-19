@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   rolify
+  generate_public_uid generator: PublicUid::Generators::HexStringSecureRandom.new(12)
+  
   has_one :profile, as: :profileable, dependent: :destroy
   #For course optional
   belongs_to :course, optional: true   
