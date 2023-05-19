@@ -17,16 +17,13 @@ class User < ApplicationRecord
   
   #STI Attribute
   self.inheritance_column = :type
-
-  
   validates :email, presence: true, uniqueness: true
-  #validation of course for student
   validates :course_id, presence: true, if: -> { is_student? }
-  #For year and sem validations okay
   validates :year, :sem, presence: true, if: -> { is_student? && course_id.present? }
-  
   validates :username, presence: true, uniqueness: true, length: { minimum: 8, maximum: 20 }
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
+
+
 
   searchable do
     integer :id
@@ -63,5 +60,7 @@ class User < ApplicationRecord
       where(conditions.to_h).first
     end
   end
+
+ 
   
 end

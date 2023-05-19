@@ -34,6 +34,7 @@ class Admin::StudentsController < ApplicationController
     def new
         @student = Student.new
         @courses = Course.all
+        @generated_password = Devise.friendly_token.first(12)
     end
 
     def create
