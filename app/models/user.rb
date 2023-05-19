@@ -7,8 +7,9 @@ class User < ApplicationRecord
   #  :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, 
-         :confirmable, :lockable, :trackable
+         :confirmable, :lockable, :trackable, :encryptable
   has_one_attached :avatar
+  
   attr_writer :login
 
   enum :year, %W[1st 2nd 3rd 4th]
