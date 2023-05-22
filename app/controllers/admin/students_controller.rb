@@ -1,7 +1,7 @@
 class Admin::StudentsController < ApplicationController
-    before_action :set_student, only: %i[show edit update destroy]
-    authorize_resource
-    
+    # before_action :set_student, only: %i[show edit update destroy]
+    load_and_authorize_resource :student, find_by: :public_uid
+
     def index
         if params[:query]
             @search = Student.search do
@@ -79,10 +79,10 @@ class Admin::StudentsController < ApplicationController
 
     private
 
-    def set_student
-        @student = Student.find_puid(params[:id])
-        @student_profile = @student.profile
-    end
+    # def set_student
+    #     @student = Student.find_puid(params[:id])
+    #     # @student_profile = @student.profile
+    # end
 
     def student_params
         params.require(:student).permit(:username, :email, :password, :password_confirmation, :course_id, :year, :sem, :public_uid)

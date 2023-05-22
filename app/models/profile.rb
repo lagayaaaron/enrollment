@@ -1,4 +1,5 @@
 class Profile < ApplicationRecord
+  include PublicUid::ModelConcern
   belongs_to :profileable, polymorphic: true
 
   validates :name, :gender, :birthdate, :contact_number, :address, presence: true
