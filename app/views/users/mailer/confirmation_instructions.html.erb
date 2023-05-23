@@ -1,5 +1,11 @@
-<p>Welcome <%= @email %>!</p>
-
-<p>You can confirm your account email through the link below:</p>
-
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<h4>You have successfully created your account <%= @record.username %> </h4>
+<p>Dear <%= @record.username %>,</p>
+<p>Thank you for signing up. Please confirm your account by clicking the link below:</p>
+<p><%= link_to 'Confirm my account', confirmation_url(@record, confirmation_token: @token) %></p>
+<p>Here are your login credentials:</p>
+<p>Email: <%= @record.email %></p>
+<p>Password: <%= @record.password %></p>
+<p>Please change your password as you login your account.</p>
+<p>If you didn't request this, please ignore this email.</p>
+<p>Regards,</p>
+<p>enrollment administrator</p>
