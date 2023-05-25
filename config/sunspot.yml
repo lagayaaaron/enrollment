@@ -9,10 +9,10 @@ production:
 
 development:
   solr:
-    hostname: localhost
-    port: 8982
-    log_level: INFO
-    path: /solr/development
+    hostname: <%= Rails.application.credentials.dig(:development, :solr, :hostname) %>
+    port: <%= Rails.application.credentials.dig(:development, :solr, :port) %>
+    log_level: <%= Rails.application.credentials.dig(:development, :solr, :log_level) %>
+    path: <%= Rails.application.credentials.dig(:development, :solr, :path) %>
 
 test:
   solr:
