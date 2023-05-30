@@ -1,23 +1,23 @@
 production:
   solr:
-    hostname: localhost
-    port: 8983
-    log_level: WARNING
-    path: /solr/production
+    hostname: <%= Rails.application.credentials.dig(:solr, :hostname) %>
+    port: <%= Rails.application.credentials.dig(:solr, :port) %>
+    log_level: <%= Rails.application.credentials.dig(:solr, :log_level) %>
+    path: <%= Rails.application.credentials.dig(:solr, :path) %>
     # read_timeout: 2
     # open_timeout: 0.5
 
 development:
   solr:
-    hostname: <%= Rails.application.credentials.dig(:development, :solr, :hostname) %>
-    port: <%= Rails.application.credentials.dig(:development, :solr, :port) %>
-    log_level: <%= Rails.application.credentials.dig(:development, :solr, :log_level) %>
-    path: <%= Rails.application.credentials.dig(:development, :solr, :path) %>
+    hostname: <%= Rails.application.credentials.dig(:solr, :hostname) %>
+    port: <%= Rails.application.credentials.dig(:solr, :port) %>
+    log_level: <%= Rails.application.credentials.dig(:solr, :log_level) %>
+    path: <%= Rails.application.credentials.dig(:solr, :path) %>
 
 test:
   solr:
-    hostname: localhost
-    port: 8981
-    log_level: WARNING
-    path: /solr/test
+    hostname: <%= Rails.application.credentials.dig(:solr, :hostname) %>
+    port: <%= Rails.application.credentials.dig(:solr, :port) %>
+    log_level: <%= Rails.application.credentials.dig(:solr, :log_level) %>
+    path: <%= Rails.application.credentials.dig(:solr, :path) %>
     
