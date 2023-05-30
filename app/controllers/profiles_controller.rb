@@ -1,7 +1,6 @@
 class ProfilesController < ApplicationController
-    load_and_authorize_resource
-    before_action :set_profile, only: %i[show edit update destroy]
-    
+    load_and_authorize_resource :through => :current_user, singleton: true
+    # raise @profile.inspect
     def new
         @profile = current_user.build_profile if current_user.profile.nil?
     end
@@ -17,12 +16,12 @@ class ProfilesController < ApplicationController
     end
 
     def show
-        if @profile.nil?
-            flash[:notice] = "User profile not found."
-            redirect_to root_path
-        else   
-            @profile = @current_user.profile
-        end
+        # if @profile.nil?
+        #     flash[:notice] = "User profile not found."
+        #     redirect_to root_path
+        # else   
+        #     @profile = @current_user.profile
+        # end
     end
     
     def edit
