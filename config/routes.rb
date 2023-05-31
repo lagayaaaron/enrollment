@@ -1,12 +1,7 @@
 Rails.application.routes.draw do
   
 
-  devise_for :users, controllers: {
-    sessions: 'users/sessions',
-    passwords: 'users/passwords',
-    registrations: 'users/registrations',
-    confirmations: 'users/confirmations'
-  }
+  devise_for :users
 
   authenticate :user do
     root to: 'home#index'
@@ -16,34 +11,26 @@ Rails.application.routes.draw do
       post 'create_child', on: :member
     end
     resources :courses do
-      member do
-        post :publish
-        post :unpublish
-        get :rollback
-      end
-      collection do
-        get 'search'
-      end
+        post :publish, on: :member
+        post :unpublish, on: :member
+        get :rollback, on: :member
+        get 'search', on: :collection
     end
     
     namespace :admin do
       get 'dashboard' => 'dashboard#index'
       resources :students, controller: 'students' do
-        resource :profile, only: [:edit, :update, :destroy], module: :students
-        collection do
-          get 'search'
-        end
+        resource :profile, only: [:edit, :update], module: :students
+        get 'search', on: :collection
       end
     end
 
     namespace :instructor do
       get 'dashboard' => 'dashboard#index'
-
     end
 
     namespace :student do
       get 'dashboard' => 'dashboard#index'
-
     end
   end #End of Authenticate :user do
 
