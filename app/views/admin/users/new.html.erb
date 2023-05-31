@@ -1,0 +1,40 @@
+<h3>New User Account</h3>
+<%= form_for [:admin, @user], method: :post do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <h4 class="mt-4">Account details</h4>
+  <hr>
+
+  <div class="field">
+    <%= f.label :type %>
+    <%= f.select :type do %>
+      <option value="Student">Student</option>
+      <option value="Administrator">Administrator</option>
+      <option value="Instructor">Instructor</option>
+    <% end %>
+  </div>
+  <%= f.label :username %>
+  <%= f.text_field :username, class: 'form-control' %>
+
+  <%= f.label :email %>
+  <%= f.email_field :email, class: 'form-control' %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password, value: @generated_password, class: 'form-control' %>
+
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation, value: @generated_password, class: 'form-control' %>
+
+  <h4 class="mt-4">Course</h4>
+  <hr>
+  <%= f.label :course_id %>
+  <%= f.collection_select :course_id, @courses, :id, :name, { prompt: 'Select a course' }, class: 'form-control' %>
+
+  <%= f.label :year %>
+  <%= f.select :year, User.years.keys, { prompt: 'Select a year' }, class: 'form-control' %>
+
+  <%= f.label :sem %>
+  <%= f.select :sem, User.sems.keys, { prompt: 'Select a semester' }, class: 'form-control' %>
+    
+  <p><%= f.submit "Create Student", class: 'btn btn-primary mt-3' %></p>
+<% end %>
+
