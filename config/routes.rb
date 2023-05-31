@@ -23,6 +23,10 @@ Rails.application.routes.draw do
         resource :profile, only: [:edit, :update], module: :students
         get 'search', on: :collection
       end
+      resources :instructors, controller: 'instructors' do
+        resource :profile, only: [:edit, :update], module: :instructors
+        # get 'search', on: :collection
+      end
     end
 
     namespace :instructor do
@@ -32,6 +36,7 @@ Rails.application.routes.draw do
     namespace :student do
       get 'dashboard' => 'dashboard#index'
     end
+
   end #End of Authenticate :user do
 
 end #end of rails
