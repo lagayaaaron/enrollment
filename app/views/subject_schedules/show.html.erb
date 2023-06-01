@@ -1,0 +1,11 @@
+<h1>Subject Schedule Details</h1>
+
+<p><strong>Subject:</strong> <%= @subject_schedule.subject.name %></p>
+<p><strong>Instructor:</strong> <%= @subject_schedule.instructor.email %></p>
+<p><strong>Start Time:</strong> <%= @subject_schedule.start_time %></p>
+<p><strong>End Time:</strong> <%= @subject_schedule.end_time %></p>
+<p><strong>Day of Week:</strong> <%= @subject_schedule.day_of_week %></p>
+<p><strong>Location:</strong> <%= @subject_schedule.location %></p>
+
+<%= link_to 'Edit', edit_subject_schedule_path(@subject_schedule) %> |
+<%= link_to 'Back', subject_schedules_path %>

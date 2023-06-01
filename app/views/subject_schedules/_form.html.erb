@@ -1,0 +1,47 @@
+<%= form_with(model: subject_schedule) do |form| %>
+    <% if subject_schedule.errors.any? %>
+    <div id="error_explanation">
+        <h2><%= pluralize(subject_schedule.errors.count, "error") %> prohibited this subject schedule from being saved:</h2>
+
+        <ul>
+        <% subject_schedule.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+        <% end %>
+        </ul>
+    </div>
+    <% end %>
+
+    <div class="field">
+        <%= form.label :subject_id %>
+        <%= form.collection_select :subject_id, @subjects, :id, :name, prompt: true %>
+    </div>
+
+    <div class="field">
+    <%= form.label :instructor_id %>
+    <%= form.collection_select :instructor_id, @instructors, :id, :email, prompt: true %>
+    </div>
+
+    <div class="field">
+        <%= form.label :start_time %>
+        <%= form.time_field :start_time %>
+    </div>
+
+    <div class="field">
+        <%= form.label :end_time %>
+        <%= form.time_field :end_time %>
+    </div>
+
+    <div class="field">
+        <%= form.label :day_of_week %>
+        <%= form.text_field :day_of_week %>
+    </div>
+
+    <div class="field">
+        <%= form.label :location %>
+        <%= form.text_field :location %>
+    </div>
+
+    <div class="actions">
+        <%= form.submit %>
+    </div>
+<% end %>

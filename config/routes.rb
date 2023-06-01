@@ -20,7 +20,7 @@ Rails.application.routes.draw do
         get :rollback, on: :member
         get 'search', on: :collection
     end
-    
+    resources :subject_schedules
     namespace :admin do
       get 'dashboard' => 'dashboard#index'
       resources :users, controller: 'users' do

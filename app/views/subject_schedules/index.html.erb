@@ -1,0 +1,34 @@
+<h1>Subject Schedules</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Subject</th>
+      <th>Instructor</th>
+      <th>Start Time</th>
+      <th>End Time</th>
+      <th>Day of Week</th>
+      <th>Location</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @subject_schedules.each do |subject_schedule| %>
+      <tr>
+        <td><%= subject_schedule.subject.name %></td>
+        <td><%= subject_schedule.instructor.profile_name if subject_schedule.instructor.profile_name.present? %></td>
+        <td><%= subject_schedule.start_time %></td>
+        <td><%= subject_schedule.end_time %></td>
+        <td><%= subject_schedule.day_of_week %></td>
+        <td><%= subject_schedule.location %></td>
+        <td><%= link_to 'Show', subject_schedule %></td>
+        <td><%= link_to 'Edit', edit_subject_schedule_path(subject_schedule) %></td>
+        <td><%= link_to 'Destroy', subject_schedule,  data: { turbo_method: :delete , turbo_confirm: "Are you sure?"} %></td>
+      </tr>
+<% end %>
+
+  </tbody>
+</table>
+
+<%= link_to 'New Subject Schedule', new_subject_schedule_path %>
