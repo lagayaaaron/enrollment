@@ -6,6 +6,7 @@ class SubjectSchedule < ApplicationRecord
 
   has_many :admissions
   has_many :students, through: :admissions
+  
   validates :subject, :instructor,:location, :day_of_week, presence: true
   validates :start_time, :end_time, :day_of_week,  presence: true
   validate :schedule_conflict, if: -> { errors.empty? }

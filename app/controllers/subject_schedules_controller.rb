@@ -1,8 +1,7 @@
 class SubjectSchedulesController < ApplicationController
     
-    before_action :set_subject_schedule, only: [:show, :edit, :update, :destroy]
     before_action :load_instructor_and_subject
-    authorize_resource
+    load_and_authorize_resource
 
 
     def index
