@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_19_071940) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_01_052208) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -115,7 +115,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_071940) do
     t.string "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "public_uid"
     t.index ["instructor_id"], name: "index_subject_schedules_on_instructor_id"
+    t.index ["public_uid"], name: "index_subject_schedules_on_public_uid"
     t.index ["subject_id"], name: "index_subject_schedules_on_subject_id"
   end
 
@@ -195,7 +197,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_071940) do
   add_foreign_key "admissions", "students"
   add_foreign_key "admissions", "subject_schedules"
   add_foreign_key "students", "courses"
-  add_foreign_key "subject_schedules", "instructors"
-  add_foreign_key "subject_schedules", "subjects"
   add_foreign_key "users", "courses"
 end
