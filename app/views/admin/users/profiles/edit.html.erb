@@ -1,0 +1,35 @@
+<h1>Edit Profile</h1>
+
+<%= form_for [:admin, @user, @profile] do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+
+    <div class="field">
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+    </div>
+
+    <div class="field">
+        <%= f.label :gender %>
+        <%= f.select :gender, options_for_select(['Male', 'Female', 'Other'], @user.profile.gender) %>
+    </div>
+
+    <div class="field">
+        <%= f.label :birthdate %>
+        <%= f.date_select :birthdate, :start_year => Date.today.year - 100, :end_year => Date.today.year - 20 %>
+    </div>
+
+    <div class="field">
+        <%= f.label :contact_number %>
+        <%= f.text_field :contact_number %>
+    </div>
+
+    <div class="field">
+        <%= f.label :address %>
+        <%= f.text_area :address %>
+    </div>
+
+    <%= f.submit "Save Changes", class: "btn btn-primary" %>
+    <%= link_to "Cancel", admin_users_path, class: "btn btn-secondary" %>
+
+<% end %>
+
