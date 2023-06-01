@@ -12,4 +12,8 @@ class Instructor < User
     add_role :instructor
   end
 
+  def profile_name
+    profile.name if profile
+  end
+
 end
