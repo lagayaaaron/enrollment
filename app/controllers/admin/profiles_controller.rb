@@ -1,9 +1,8 @@
-class Admin::ProfilesController < ApplicationController
+class Admin::Users::ProfilesController < ApplicationController
     load_and_authorize_resource :user, find_by: :public_uid
     load_and_authorize_resource :profile, through: :user, singleton: true
 
     def edit
-        
         if @user.profile.nil?
             flash[:notice] = "Student profile not found."
             redirect_to admin_dashboard_path

@@ -1,7 +1,7 @@
 class ProfilesController < ApplicationController
-    load_and_authorize_resource 
+    before_action :set_profile, only: [:show, :edit, :update, :destroy]
+    authorize_resource 
 
-    
     def new
         @profile = current_user.build_profile if current_user.profile.nil?
     end
