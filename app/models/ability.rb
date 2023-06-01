@@ -7,9 +7,10 @@ class Ability
     user ||= User.new  #for guest users
     if user.present? 
       can [:read, :search], Course, state: :published 
-      can [:read, :update], Profile, user_id: user.id
+      can [:read, :update], Profile, profileable_id: user.id
       can :create, Profile if user.profile.nil?
       if user.has_role? :administrator
+        can :manage, SubjectSchedule
         can :manage, User
         can :manage, Subject
         can :manage, Student
