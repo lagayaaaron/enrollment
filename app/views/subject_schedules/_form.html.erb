@@ -1,19 +1,18 @@
 <%= form_with(model: subject_schedule) do |form| %>
-    <% if subject_schedule.errors.any? %>
-    <div id="error_explanation">
-        <h2><%= pluralize(subject_schedule.errors.count, "error") %> prohibited this subject schedule from being saved:</h2>
-
-        <ul>
-        <% subject_schedule.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
+  <% if subject_schedule.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(subject_schedule.errors.count, "error") %> prohibited this course from being saved:</h2>
+      <ul>
+        <% subject_schedule.errors.each do |error| %>
+          <li><%= error.full_message %></li>
         <% end %>
-        </ul>
+      </ul>
     </div>
-    <% end %>
+  <% end %>
 
     <div class="field">
         <%= form.label :subject_id %>
-        <%= form.collection_select :subject_id, @subjects, :id, :name, prompt: true %>
+        <%= form.collection_select :subject_id, @subsubjects, :id, :name, prompt: true %>
     </div>
 
     <div class="field">
@@ -41,7 +40,7 @@
         <%= form.text_field :location %>
     </div>
 
-    <div class="actions">
+    <div>
         <%= form.submit %>
     </div>
 <% end %>
