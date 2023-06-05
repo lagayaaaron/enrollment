@@ -2,6 +2,7 @@ class ProfilesController < ApplicationController
     before_action :set_profile, only: [:show, :edit, :update, :destroy]
     authorize_resource 
 
+    
     def new
         @profile = current_user.build_profile if current_user.profile.nil?
     end
@@ -17,11 +18,9 @@ class ProfilesController < ApplicationController
     end
 
     def show 
-        @profile = @current_user.profile
     end
     
     def edit
-        @profile = @current_user.profile
     end
 
     def update
