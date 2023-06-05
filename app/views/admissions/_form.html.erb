@@ -1,0 +1,41 @@
+<%= form_with(model: admission) do |f| %>
+    <% if admission.errors.any? %>
+        <div style="color: red">
+            <h2><%= pluralize(admission.errors.count, "error") %> prohibited this admission from being saved:</h2>
+            <ul>
+                <% admission.errors.each do |error| %>
+                    <li><%= error.full_message %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Course</th>
+                <th>Subject Name</th>
+                <th>Subject Type</th>
+                <th>Time</th>
+                <th>Day</th>
+                <th>Room</th>
+                <th>Instructor</th>
+                <th>Select</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @subject_schedules.each do |subject_schedule| %>
+                <tr>
+                    <td><%= subject_schedule.subject.course.code%></td>
+                    <td><%= subject_schedule.subject.name %></td>
+                    <td><%= subject_schedule.subject.subject_type %></td>
+                    <td><%= subject_schedule.format_time %></td>
+                    <td><%= subject_schedule.day_of_week%></td>
+                    <td><%= subject_schedule.location%></td>
+                    <td><%= subject_schedule.instructor.profile_name %></td>
+                    <td><%= check_box_tag 'admission[subject_schedule_ids][]', subject_schedule.id %></td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+    <%= f.submit 'Submit' %>
+<% end %>

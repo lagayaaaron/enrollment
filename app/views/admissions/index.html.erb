@@ -1,0 +1,25 @@
+<h1>Admissions</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Subject Name</th>
+      <th>Time</th>
+      <th>Day</th>
+      <th>Instructor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @admissions.each do |admission| %>
+      <tr>
+        <td><%= admission.subject_schedule.subject.name %></td>
+        <td><%= admission.subject_schedule.format_time %></td>
+        <td><%= admission.subject_schedule.day_of_week %></td>
+        <td><%= admission.subject_schedule.instructor.profile_name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% if can?(:create, Admission)%>
+    <%= link_to "Enroll Subjects", new_admission_path, class: "btn btn-success mt-2 mb-2" %>  
+<%end%>

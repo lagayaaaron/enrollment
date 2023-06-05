@@ -1,0 +1,9 @@
+<h1>New enrollment for <%= current_user.course.code %></h1></h1>
+
+<%= render "form", admission: @admission %>
+
+<br>
+
+<div>
+    <%= link_to "Back to enrolled subjects", admissions_path %>
+</div>
