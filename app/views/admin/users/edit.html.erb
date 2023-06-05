@@ -1,0 +1,30 @@
+<h1>Edit User</h1>
+
+<%= form_for [:admin, @user] do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <%= f.label :username %>
+  <%= f.text_field :username, class: 'form-control' %>
+
+  <%= f.label :email %>
+  <%= f.email_field :email, autocomplete: "email", class: 'form-control' %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password, autocomplete: "password", class: 'form-control' %>
+
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation, class: 'form-control' %>
+  
+  <%# Add a collection of courses for the student %>
+<% if current_user.has_role? (:student)%>
+  <%= f.label :course_id %>
+  <%= f.collection_select :course_id, @courses, :id, :name, { selected: @user.course&.id }, class: "form-control" %>
+
+  <%= f.label :year %>
+  <%= f.select :year, User.years.keys, { selected: @user.year }, include_blank: true, class: "form-control" %>
+
+  <%= f.label :sem %>
+  <%= f.select :sem, User.sems.keys, { selected: @user.sem }, include_blank: true, class: "form-control" %>
+<% end %>
+  <p><%= f.submit "Update User", class: "btn btn-primary mt-3" %></p>
+<% end %>
