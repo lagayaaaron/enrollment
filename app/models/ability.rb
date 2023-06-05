@@ -9,6 +9,10 @@ class Ability
       can [:read, :search], Course, state: :published 
       can [:read, :update], Profile, profileable_id: user.id
       can :create, Profile if user.profile.nil?
+      if user.has_role? :student
+        can :create, Admission
+        can [:read, :update], Admission, user_id: user.id
+      end
       if user.has_role? :administrator
         can :manage, SubjectSchedule
         can :manage, User
@@ -19,6 +23,7 @@ class Ability
         can :manage, Course
       end
     end
+  end
     # Define abilities for the user here. For example:
     #
     #   return unless user.present?
@@ -43,5 +48,4 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/blob/develop/docs/define_check_abilities.md
-  end
 end
