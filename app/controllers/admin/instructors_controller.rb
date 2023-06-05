@@ -1,5 +1,5 @@
 class Admin::InstructorsController < ApplicationController
-    load_and_authorize_resource, :instructor, find_by: :public_uid
+    load_and_authorize_resource :instructor, find_by: :public_uid
 
     def index
         @instructors = Instructor.all
@@ -29,19 +29,19 @@ class Admin::InstructorsController < ApplicationController
 
     def update
         if @instructor.update(instructor_params)
-            redirect_to admin_instructors_path, notice: "Instructor Account updated successfully."
+            redirect_to admin_users_path, notice: "Instructor Account updated successfully."
         else
             render :edit
         end
     end
 
     def destroy
-        if @student.destroy
+        if @instructor.destroy
             flash[:notice] = "Student deleted successfully"
-            redirect_to admin_students_path
+            redirect_to admin_users_path
         else
             flash[:notice] = "Error"
-            redirect_to admin_dashboard_path
+            render :edit
         end
     end
 
