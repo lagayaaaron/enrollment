@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
-    load_and_authorize_resource
     before_action :load_course
+    load_and_authorize_resource :user, find_by: :public_uid
     def index
         @users = User.where.not(:public_uid => current_user.public_uid)
     end
@@ -38,7 +38,7 @@ class Admin::UsersController < ApplicationController
     def destroy
         if @user.destroy
             flash[:notice] = "Successfully deleted User."
-            redirect_to root_path
+            redirect_to admin_users_path
         end
     end 
 
