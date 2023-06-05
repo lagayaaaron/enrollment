@@ -21,6 +21,7 @@ Rails.application.routes.draw do
         get 'search', on: :collection
     end
     resources :subject_schedules
+    resources :admissions, only: [:new, :create, :index]
     namespace :admin do
       get 'dashboard' => 'dashboard#index'
       resources :users, controller: 'users' do
